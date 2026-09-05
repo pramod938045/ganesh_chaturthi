@@ -672,8 +672,29 @@ button:disabled,input:disabled,select:disabled,textarea:disabled{
 
 <div class="toast" id="toast"></div>
 
+<!-- Firebase — lets every device share the same data instead of each
+     browser only storing its own local copy. -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 <script>
 const $ = id => document.getElementById(id);
+
+// ============ FIREBASE ============
+const firebaseConfig = {
+  apiKey: "AIzaSyAi2Q6DALglhdMhp0hQONph26UYyD8wf2c",
+  authDomain: "ganesh-chaturthi-timmapur.firebaseapp.com",
+  projectId: "ganesh-chaturthi-timmapur",
+  storageBucket: "ganesh-chaturthi-timmapur.firebasestorage.app",
+  messagingSenderId: "702273052859",
+  appId: "1:702273052859:web:2799c7633642c6474f899e",
+  measurementId: "G-BHDT7DHDTH"
+};
+let fireDb = null;
+try{
+  firebase.initializeApp(firebaseConfig);
+  fireDb = firebase.firestore();
+}catch(e){ console.warn('Firebase failed to initialize — falling back to this browser only.', e); }
 
 // ============ TRANSLATIONS ============
 const translations = {
@@ -828,7 +849,7 @@ function setLanguage(lang){
 
 // ============ ADMIN ACCESS CONTROL ============
 // Change these passwords before publishing the site.
-const ADMIN_PASSWORD = 'tpt@2026';
+const ADMIN_PASSWORD = 'Mandal@2026';
 let adminUnlocked = false;
 let pendingAdminTab = null;
 
@@ -982,12 +1003,14 @@ function showStorageWarning(show){
 
 async function loadKey(key){
   try{
-    if(typeof window.storage !== 'undefined' && window.storage){
-      const res = await window.storage.get(key, true);
-      storageMode = 'cloud';
-      return res ? JSON.parse(res.value) : null;
+    if(fireDb){
+      const doc = await fireDb.collection('mandal_data').doc(key).get();
+      if(doc.exists){
+        storageMode = 'cloud';
+        return JSON.parse(doc.data().value);
+      }
     }
-  }catch(e){}
+  }catch(e){ console.warn('Cloud load failed for', key, e); }
   try{
     const raw = localStorage.getItem('gc_'+key);
     if(raw !== null){ if(storageMode!=='cloud') storageMode = 'local'; return JSON.parse(raw); }
@@ -998,8 +1021,8 @@ async function loadKey(key){
 async function persistKey(key, value){
   let savedSomewhere = false;
   try{
-    if(typeof window.storage !== 'undefined' && window.storage){
-      await window.storage.set(key, JSON.stringify(value), true);
+    if(fireDb){
+      await fireDb.collection('mandal_data').doc(key).set({ value: JSON.stringify(value), updatedAt: Date.now() });
       storageMode = 'cloud'; savedSomewhere = true;
     }
   }catch(e){ console.warn('Cloud save failed for', key, e); }
@@ -1013,6 +1036,36 @@ async function persistKey(key, value){
   showStorageWarning(!savedSomewhere);
   if(!savedSomewhere){ toast('⚠ Not saved — this browser is blocking storage. Download a backup now.'); }
   return savedSomewhere;
+}
+
+// Keep every open tab/device in sync automatically: whenever any device
+// writes new data to Firestore, every other device gets the update pushed
+// to it live, without needing to refresh the page.
+function rerenderForKey(key){
+  if(key==='schedule'){ renderSchedule(); populateRegisterEventOptions(); }
+  if(key==='donations'){ renderDonations(); renderBalance(); }
+  if(key==='expenses'){ renderExpenses(); renderBalance(); }
+  if(key==='prizes') renderPrizes();
+  if(key==='committee') renderCommittee();
+  if(key==='photos') renderPhotos();
+  if(key==='contact') renderContact();
+  if(key==='registrations') renderRegistrations();
+  if(key==='enquiries') renderEnquiries();
+}
+function attachRealtimeSync(){
+  if(!fireDb) return;
+  const keys = ['schedule','donations','expenses','prizes','committee','photos','contact','registrations','enquiries'];
+  keys.forEach(key=>{
+    fireDb.collection('mandal_data').doc(key).onSnapshot(doc=>{
+      if(!doc.exists) return;
+      try{
+        const value = JSON.parse(doc.data().value);
+        appState[key] = value;
+        localStorage.setItem('gc_'+key, JSON.stringify(value));
+        rerenderForKey(key);
+      }catch(e){ console.warn('Sync parse failed for', key, e); }
+    }, err=>{ console.warn('Live sync error for', key, err); });
+  });
 }
 
 function fmt(n){ return '₹' + Number(n).toLocaleString('en-IN'); }
@@ -1706,6 +1759,7 @@ submitOnEnter('cm-phone', addMember);
   // Show the warning right away if we already know for certain that saving
   // won't work — don't wait for the user to lose data first to find out.
   showStorageWarning(!localStorageWorks && storageMode !== 'cloud');
+  attachRealtimeSync();
 })();
 </script>
 </body>
