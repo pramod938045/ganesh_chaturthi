@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TPT Team Timmapur — Sri siddi vinayaka geleyara balaga</title>
+<title>Shree Siddi Vinayaka Geleyara Balaga — Ganesh Chaturthi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -375,8 +375,11 @@ button:disabled,input:disabled,select:disabled,textarea:disabled{
     <button class="drawer-item" data-tab="registrations" data-i18n="nav_registrations">Registrations</button>
   </nav>
 
-  <div id="storage-warning" style="display:none;background:#FDECEC;border:1.5px solid var(--sindoor);color:var(--sindoor-deep);border-radius:10px;padding:12px 16px;font-size:0.85rem;margin:-16px 0 20px;text-align:center;" data-i18n="storage_warning">
-    ⚠ This browser can't save data long-term right now — everything you add still works and displays normally, but please tap Download Backup regularly so nothing is lost.
+  <div id="storage-warning" style="display:none;background:#FDECEC;border:1.5px solid var(--sindoor);color:var(--sindoor-deep);border-radius:10px;padding:12px 16px;font-size:0.85rem;margin:-16px 0 20px;text-align:center;">
+    ⚠ <span id="storage-warning-text">This browser can't save data long-term right now — everything you add still works and displays normally, but please tap Download Backup regularly so nothing is lost.</span>
+    <div style="font-size:0.78rem;margin-top:6px;font-weight:600;">
+      This usually happens if you're using Private/Incognito mode, or opened this link inside WhatsApp/Instagram's built-in browser. Try opening it in Chrome or Safari directly instead.
+    </div>
   </div>
 
   <div class="toolbar-row">
@@ -421,6 +424,7 @@ button:disabled,input:disabled,select:disabled,textarea:disabled{
     <div class="card">
       <h2 data-i18n="contact_current_title">Reach Us</h2>
       <div class="contact-display" id="contact-display"></div>
+      <button class="ghost" id="contact-clear-btn" style="margin-top:14px;" onclick="clearContact()" data-i18n="btn_clear_contact">🗑 Clear contact info</button>
     </div>
     <div class="card">
       <h2 data-i18n="enquiry_title">Send us a message</h2>
@@ -654,6 +658,18 @@ button:disabled,input:disabled,select:disabled,textarea:disabled{
   </div>
 </div>
 
+<div id="confirm-modal" class="lock-overlay" aria-hidden="true">
+  <div class="lock-card">
+    <div class="lock-icon">🗑️</div>
+    <h2>Remove this entry?</h2>
+    <p id="confirm-modal-msg">This can't be undone.</p>
+    <div class="lock-actions">
+      <button class="ghost" type="button" onclick="resolveConfirmModal(false)">Cancel</button>
+      <button class="primary" type="button" onclick="resolveConfirmModal(true)">Remove</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -712,7 +728,7 @@ const translations = {
     contact_title:"Contact Us", contact_hint:"Set this once — visitors will see it below.",
     lbl_contact_name:"Name", lbl_phone1:"Phone Number", lbl_phone2:"Secondary phone (optional)", lbl_email:"Email ID", ph_contact_name:"e.g. Pramod Rayanagoudra", ph_email:"e.g. example@gmail.com",
     lbl_address:"Address", lbl_maplink:"Map link (optional)", btn_save_contact:"Save contact info", contact_current_title:"Reach Us",
-    contact_empty:"Contact details haven't been added yet.",
+    contact_empty:"Contact details haven't been added yet.", btn_clear_contact:"🗑 Clear contact info",
     message_note:"Real SMS sending needs a paid SMS gateway with an API key, which isn't possible inside a plain webpage. This sends via WhatsApp or your phone's own Messages app instead.",
     message_title:"Send a message", lbl_msg_type:"Message type",
     opt_thanks:"Thank you for donation", opt_reminder:"Event reminder", opt_prize:"Prize / winner announcement", opt_sponsor:"Prize sponsor thank-you", opt_general:"General message",
@@ -772,7 +788,7 @@ const translations = {
     contact_title:"ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ", contact_hint:"ಇದನ್ನು ಒಮ್ಮೆ ಹೊಂದಿಸಿ — ಸಂದರ್ಶಕರು ಕೆಳಗೆ ನೋಡುತ್ತಾರೆ.",
     lbl_contact_name:"ಹೆಸರು", lbl_phone1:"ಫೋನ್ ಸಂಖ್ಯೆ", lbl_phone2:"ಇತರ ಫೋನ್ (ಐಚ್ಛಿಕ)", lbl_email:"ಇಮೇಲ್ ಐಡಿ", ph_contact_name:"ಉದಾ: ಪ್ರಮೋದ್ ರಾಯಣಗೌಡ್ರ", ph_email:"ಉದಾ: example@gmail.com",
     lbl_address:"ವಿಳಾಸ", lbl_maplink:"ನಕ್ಷೆ ಲಿಂಕ್ (ಐಚ್ಛಿಕ)", btn_save_contact:"ಸಂಪರ್ಕ ಮಾಹಿತಿ ಉಳಿಸಿ", contact_current_title:"ನಮ್ಮನ್ನು ತಲುಪಿ",
-    contact_empty:"ಸಂಪರ್ಕ ವಿವರಗಳನ್ನು ಇನ್ನೂ ಸೇರಿಸಿಲ್ಲ.",
+    contact_empty:"ಸಂಪರ್ಕ ವಿವರಗಳನ್ನು ಇನ್ನೂ ಸೇರಿಸಿಲ್ಲ.", btn_clear_contact:"🗑 ಸಂಪರ್ಕ ಮಾಹಿತಿ ಅಳಿಸಿ",
     message_note:"ನಿಜವಾದ SMS ಕಳುಹಿಸಲು API ಕೀ ಇರುವ ಪಾವತಿಸಿದ SMS ಗೇಟ್‌ವೇ ಬೇಕು, ಇದು ಸಾಮಾನ್ಯ ವೆಬ್‌ಪುಟದಲ್ಲಿ ಸಾಧ್ಯವಿಲ್ಲ. ಬದಲಿಗೆ ಇದು WhatsApp ಅಥವಾ ನಿಮ್ಮ ಫೋನ್‌ನ ಮೆಸೇಜ್ ಆ್ಯಪ್ ಮೂಲಕ ಕಳುಹಿಸುತ್ತದೆ.",
     message_title:"ಸಂದೇಶ ಕಳುಹಿಸಿ", lbl_msg_type:"ಸಂದೇಶದ ಪ್ರಕಾರ",
     opt_thanks:"ದೇಣಿಗೆಗೆ ಧನ್ಯವಾದ", opt_reminder:"ಕಾರ್ಯಕ್ರಮ ಜ್ಞಾಪನೆ", opt_prize:"ಬಹುಮಾನ / ವಿಜೇತರ ಪ್ರಕಟಣೆ", opt_sponsor:"ಬಹುಮಾನ ಪ್ರಾಯೋಜಕರಿಗೆ ಧನ್ಯವಾದ", opt_general:"ಸಾಮಾನ್ಯ ಸಂದೇಶ",
@@ -812,7 +828,7 @@ function setLanguage(lang){
 
 // ============ ADMIN ACCESS CONTROL ============
 // Change these passwords before publishing the site.
-const ADMIN_PASSWORD = 'Mandal@2026';
+const ADMIN_PASSWORD = 'tpt@2026';
 let adminUnlocked = false;
 let pendingAdminTab = null;
 
@@ -870,8 +886,6 @@ function applyAdminEditState(){
   });
   renderRegistrations();
   renderEnquiries();
-  renderSchedule();
-  renderCommittee();
   const loginBtn = $('admin-login-btn');
   if(loginBtn){
     loginBtn.textContent = unlocked ? '🔓 Admin Mode On' : '🔐 Admin Login';
@@ -938,12 +952,33 @@ const appState = { schedule: [], donations: [], expenses: [], prizes: [], commit
 let storageMode = 'memory';
 
 const defaultSchedule = [
-  {day:'Day 1 — Sthapana', time:'7:00 AM', name:'Ganesh Murti Sthapana & Pran Pratishtha', p1:'', p1w:'', p2:'', p2w:'', terms:''},
-  {day:'Daily', time:'7:00 AM', name:'Morning Aarti & Bhog', p1:'', p1w:'', p2:'', p2w:'', terms:''},
-  {day:'Daily', time:'7:30 PM', name:'Evening Aarti', p1:'', p1w:'', p2:'', p2w:'', terms:''},
-  {day:'Day 5', time:'6:00 PM', name:'Cultural Program & Competitions', p1:'', p1w:'', p2:'', p2w:'', terms:''},
-  {day:'Last Day — Visarjan', time:'9:00 AM', name:'Final Aarti & Procession to Visarjan', p1:'', p1w:'', p2:'', p2w:'', terms:''},
+  {day:'Day 1 — Sthapana', time:'7:00 AM', name:'Ganesh Murti Sthapana & Pran Pratishtha', terms:''},
+  {day:'Daily', time:'7:00 AM', name:'Morning Aarti & Bhog', terms:''},
+  {day:'Daily', time:'7:30 PM', name:'Evening Aarti', terms:''},
+  {day:'Day 5', time:'6:00 PM', name:'Cultural Program & Competitions', terms:''},
+  {day:'Last Day — Visarjan', time:'9:00 AM', name:'Final Aarti & Procession to Visarjan', terms:''},
 ];
+
+// Actually verifies localStorage works, instead of assuming it does.
+// Some browsers (Private/Incognito mode, WhatsApp/Instagram's in-app
+// browser, or very old/locked-down browsers) silently block or wipe
+// localStorage, so a plain try/catch around setItem isn't always enough —
+// this does a real write-then-read-back check once at startup.
+function checkLocalStorageWorks(){
+  try{
+    const testKey = '__gc_storage_test__';
+    localStorage.setItem(testKey, '1');
+    const ok = localStorage.getItem(testKey) === '1';
+    localStorage.removeItem(testKey);
+    return ok;
+  }catch(e){ return false; }
+}
+let localStorageWorks = null; // set once at init by checkLocalStorageWorks()
+
+function showStorageWarning(show){
+  const el = $('storage-warning');
+  if(el) el.style.display = show ? 'block' : 'none';
+}
 
 async function loadKey(key){
   try{
@@ -973,7 +1008,10 @@ async function persistKey(key, value){
     if(!savedSomewhere) storageMode = 'local';
     savedSomewhere = true;
   }catch(e){ console.warn('Local save failed for', key, e); }
-  $('storage-warning').style.display = savedSomewhere ? 'none' : 'block';
+  // Show/hide the warning based on what actually just happened, every time —
+  // not just once at page load — so a failure is never silent.
+  showStorageWarning(!savedSomewhere);
+  if(!savedSomewhere){ toast('⚠ Not saved — this browser is blocking storage. Download a backup now.'); }
   return savedSomewhere;
 }
 
@@ -1026,13 +1064,12 @@ function renderSchedule(){
       const card = document.createElement('div');
       card.className = 'event-card';
       const termsHtml = ev.terms ? `<details class="terms"><summary>${t('lbl_terms').replace(' (optional)','').replace(' (ಐಚ್ಛಿಕ)','')}</summary>${ev.terms}</details>` : '';
-      const delBtnHtml = isAdminUnlocked() ? `<button class="del-x" onclick="deleteItem('schedule',${ev.idx})">✕</button>` : '';
       card.innerHTML = `
         <div class="event-top">
           <div><div class="event-time">${ev.time}</div><div class="event-name">${ev.name}</div></div>
-          ${delBtnHtml}
+          <button class="del-x" onclick="deleteItem('schedule',${ev.idx})">✕</button>
         </div>
-        ${prizeHtml}${termsHtml}`;
+        ${termsHtml}`;
       block.appendChild(card);
     });
     el.appendChild(block);
@@ -1048,8 +1085,6 @@ async function addSchedule(){
   if(!day || !time || !name){ toast('toast_fill_required'); return; }
   appState.schedule.push({
     day, time, name,
-    p1: $('sc-p1').value.trim(), p1w: $('sc-p1w').value.trim(),
-    p2: $('sc-p2').value.trim(), p2w: $('sc-p2w').value.trim(),
     terms: $('sc-terms').value.trim()
   });
   renderSchedule();
@@ -1060,11 +1095,21 @@ async function addSchedule(){
 }
 
 // ---------- REGISTER (public form; list is admin-only) ----------
+// These competitions are always available to register for, regardless of
+// whether they've been added to the Schedule tab yet — the mandal runs
+// these every year, so visitors shouldn't have to wait for an admin to
+// add them to the schedule first.
+const DEFAULT_EVENT_OPTIONS = [
+  'Drawing Competition', 'Essay Writing', 'Memory Test', 'Quiz Competition',
+  'Science Exhibition', 'Single Stump Competition', 'Rangoli Competition'
+];
+
 function populateRegisterEventOptions(){
   const sel = $('reg-event');
   if(!sel) return;
   const current = sel.value;
-  const names = [...new Set(appState.schedule.map(ev=>ev.name).filter(Boolean))];
+  const scheduleNames = appState.schedule.map(ev=>ev.name).filter(Boolean);
+  const names = [...new Set([...DEFAULT_EVENT_OPTIONS, ...scheduleNames])];
   sel.innerHTML = `<option value="">${t('opt_select_event')}</option>` +
     names.map(n=>`<option value="${n.replace(/"/g,'&quot;')}">${n}</option>`).join('');
   if(names.includes(current)) sel.value = current;
@@ -1272,8 +1317,7 @@ function renderCommittee(){
   appState.committee.forEach((m,idx)=>{
     const card = document.createElement('div');
     card.className = 'member-card';
-    const delBtnHtml = isAdminUnlocked() ? `<button class="card-del" onclick="deleteItem('committee',${idx})">✕</button>` : '';
-    card.innerHTML = `${delBtnHtml}
+    card.innerHTML = `<button class="card-del" onclick="deleteItem('committee',${idx})">✕</button>
       ${m.photo ? `<img src="${m.photo}">` : `<div style="width:100%;aspect-ratio:1;border-radius:8px;background:var(--paper-line);margin-bottom:8px;"></div>`}
       <div class="m-name">${m.name}</div><div class="m-role">${m.role}</div>`;
     el.appendChild(card);
@@ -1358,10 +1402,40 @@ async function saveContact(){
   await persistKey('contact', appState.contact);
 }
 
+async function clearContact(){
+  if(!requireAdmin()) return;
+  const ok = await askConfirm("Remove the Reach Us contact info? This can't be undone. / ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ತೆಗೆದುಹಾಕುವುದೇ? ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.");
+  if(!ok) return;
+  appState.contact = {};
+  $('ct-name').value=''; $('ct-phone1').value=''; $('ct-email').value='';
+  renderContact();
+  toast('toast_removed');
+  await persistKey('contact', appState.contact);
+}
+
 // ---------- DELETE (always confirms first) ----------
+// Custom confirm dialog — replaces window.confirm(), which many in-app
+// browsers (WhatsApp, Instagram) and mobile webviews silently block or
+// auto-dismiss, making delete buttons appear completely unresponsive.
+let _confirmResolve = null;
+function askConfirm(message){
+  return new Promise(resolve=>{
+    _confirmResolve = resolve;
+    $('confirm-modal-msg').textContent = message;
+    $('confirm-modal').classList.add('open');
+    $('confirm-modal').setAttribute('aria-hidden','false');
+  });
+}
+function resolveConfirmModal(result){
+  $('confirm-modal').classList.remove('open');
+  $('confirm-modal').setAttribute('aria-hidden','true');
+  if(_confirmResolve){ _confirmResolve(result); _confirmResolve = null; }
+}
+
 async function deleteItem(key, idx){
   if(!requireAdmin()) return;
-  if(!confirm("Remove this entry? This can't be undone. / ಈ ನಮೂದನ್ನು ತೆಗೆದುಹಾಕುವುದೇ? ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.")) return;
+  const ok = await askConfirm("Remove this entry? This can't be undone. / ಈ ನಮೂದನ್ನು ತೆಗೆದುಹಾಕುವುದೇ? ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.");
+  if(!ok) return;
   appState[key].splice(idx,1);
   if(key==='schedule'){ renderSchedule(); populateRegisterEventOptions(); }
   if(key==='donations'){ renderDonations(); renderBalance(); }
@@ -1396,7 +1470,7 @@ async function restoreBackup(event){
   try{
     const text = await file.text();
     const data = JSON.parse(text);
-    const ok = confirm('Replace what\'s currently on screen with this backup? / ಪ್ರಸ್ತುತ ಇರುವುದನ್ನು ಈ ಬ್ಯಾಕಪ್‌ನಿಂದ ಬದಲಾಯಿಸಬೇಕೇ?');
+    const ok = await askConfirm('Replace what\'s currently on screen with this backup? / ಪ್ರಸ್ತುತ ಇರುವುದನ್ನು ಈ ಬ್ಯಾಕಪ್‌ನಿಂದ ಬದಲಾಯಿಸಬೇಕೇ?');
     if(!ok) return;
     appState.schedule = data.schedule || [];
     appState.donations = data.donations || [];
@@ -1471,7 +1545,7 @@ ${signOff}`;
         const sponsor = name || s1 || s2 || 'ಅವರೇ';
         return `ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ 🙏
 
-ನಮಸ್ಕಾರ ${sponsor} 
+ನಮಸ್ಕಾರ ${sponsor} ಅವರೆ,
 
 ನಮ್ಮ ತಿಮ್ಮಾಪುರದ ಗಣೇಶ ಚತುರ್ಥಿ 2026ರ ಸ್ಪರ್ಧೆಯ ಬಹುಮಾನವನ್ನು ಪ್ರಾಯೋಜಿಸುತ್ತಿರುವುದಕ್ಕೆ ತುಂಬಾ ಧನ್ಯವಾದಗಳು. 🙏
 
@@ -1479,7 +1553,7 @@ ${latestPrize ? `ಸ್ಪರ್ಧೆ: ${latestPrize.category}
 ${s1 ? `🥇 ಮೊದಲ ಬಹುಮಾನ — ಪ್ರಾಯೋಜಕರು: ${s1}
 ` : ''}${s2 ? `🥈 ಎರಡನೇ ಬಹುಮಾನ — ಪ್ರಾಯೋಜಕರು: ${s2}
 ` : ''}` : ''}
-ನಿಮ್ಮ ಸಹಕಾರದಿಂದ ನಮ್ಮ ಮಕ್ಕಳ ಮತ್ತು ಯುವಕರಿಗೆ ಇನ್ನಷ್ಟು ಉತ್ಸಾಹ ಸಿಗುತ್ತದೆ. ನಿಮ್ಮ ಬೆಂಬಲಕ್ಕೆ ನಮ್ಮ ತಂಡದ ವತಿಯಿಂದ ಹೃತ್ಪೂರ್ವಕ ಧನ್ಯವಾದಗಳು.
+ನಿಮ್ಮ ಸಹಕಾರದಿಂದ ನಮ್ಮ ಮಕ್ಕಳ ಮತ್ತು ಯುವಕರಿಗೆ ಇನ್ನಷ್ಟು ಉತ್ಸಾಹ ಸಿಗುತ್ತದೆ. ನಿಮ್ಮ ಬೆಂಬಲಕ್ಕೆ Our Team ವತಿಯಿಂದ ಹೃತ್ಪೂರ್ವಕ ಧನ್ಯವಾದಗಳು.
 
 ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ! 🙏
 
@@ -1487,7 +1561,7 @@ ${signOff}`;
       }
       default: return `ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ 🙏
 
-ನಮಸ್ಕಾರ ${n} 
+ನಮಸ್ಕಾರ ${n} ಅವರೆ,
 
 ತಿಮ್ಮಾಪುರದ ನಮ್ಮ ಗಣೇಶ ಚತುರ್ಥಿ 2026ರ ಹಬ್ಬದ ಕಾರ್ಯಕ್ರಮದ ಕುರಿತು ಈ ಮಾಹಿತಿ ನಿಮಗಾಗಿ. ನಮ್ಮ ಹಬ್ಬದ ಕಾರ್ಯಕ್ರಮಗಳಿಗೆ ನಿಮ್ಮ ಬೆಂಬಲ ಮತ್ತು ಭಾಗವಹಿಸುವಿಕೆ ಯಾವಾಗಲೂ ಇರಲಿ.
 
@@ -1603,6 +1677,10 @@ submitOnEnter('cm-phone', addMember);
 
 // ---------- INIT ----------
 (async function init(){
+  // Run the real write/read test first, so we know for certain — before
+  // touching any real data — whether this browser will actually let us save.
+  localStorageWorks = checkLocalStorageWorks();
+
   try{
     const savedLang = localStorage.getItem('gc_lang');
     if(savedLang) currentLang = savedLang;
@@ -1625,7 +1703,9 @@ submitOnEnter('cm-phone', addMember);
   renderBalance();
   applyAdminEditState();
 
-  if(storageMode === 'memory'){ $('storage-warning').style.display = 'block'; }
+  // Show the warning right away if we already know for certain that saving
+  // won't work — don't wait for the user to lose data first to find out.
+  showStorageWarning(!localStorageWorks && storageMode !== 'cloud');
 })();
 </script>
 </body>
