@@ -128,7 +128,6 @@
   .li-main{display:flex;flex-direction:column;text-align:left;}
   .li-main .name{font-weight:600;}
   .li-main .meta{font-size:0.76rem;color:var(--ink-soft);}
-  .li-main .exp-desc{font-size:0.76rem;color:var(--ink-soft);font-style:italic;margin-top:2px;}
   .li-amt{font-family:'IBM Plex Mono',monospace;font-weight:600;white-space:nowrap;}
   .empty{color:var(--ink-soft);font-style:italic;font-size:0.9rem;padding:8px 0;text-align:left;}
 
@@ -386,6 +385,88 @@ button:disabled,input:disabled,select:disabled,textarea:disabled{
   background-position: center 22%;
   background-repeat: no-repeat;
 }
+
+/* ============ Ganesh History section — decorative story styling ============ */
+.history-hero{
+  position:relative;text-align:center;padding:28px 18px 24px;border-radius:16px;
+  margin-bottom:4px;overflow:hidden;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(232,169,59,0.32), transparent 42%),
+    radial-gradient(circle at 86% 12%, rgba(232,169,59,0.22), transparent 46%),
+    linear-gradient(160deg,#6b1420 0%,#3a1315 100%);
+  box-shadow:0 14px 32px rgba(58,19,21,0.28);
+}
+.history-hero::before{
+  content:"ॐ";position:absolute;top:-22px;right:2px;font-family:'Fraunces',serif;font-weight:700;
+  font-size:6rem;color:rgba(255,247,234,0.06);pointer-events:none;
+}
+.history-hero .h-kicker{
+  display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;
+  font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--marigold);
+  background:rgba(232,169,59,0.14);border:1px solid rgba(232,169,59,0.42);
+  padding:5px 14px;border-radius:20px;margin-bottom:12px;
+}
+.history-hero h2{
+  font-family:'Fraunces',serif;font-weight:700;font-size:1.7rem;color:#fff7ea;
+  margin:0 0 6px;letter-spacing:-0.01em;
+}
+.history-hero .h-sub{font-weight:600;color:rgba(255,247,234,0.78);font-size:0.92rem;margin:0;}
+.history-ornament{
+  display:flex;align-items:center;justify-content:center;gap:10px;margin:18px 0 22px;color:var(--marigold);
+}
+.history-ornament::before,.history-ornament::after{content:"";height:1px;width:56px;background:linear-gradient(90deg,transparent,var(--marigold));}
+.history-ornament::after{background:linear-gradient(90deg,var(--marigold),transparent);}
+.history-ornament span{font-size:1.05rem;}
+.story-scroll p{margin:0 0 16px;line-height:1.85;font-size:0.96rem;color:var(--ink);text-align:left;}
+.story-scroll p.first-para::first-letter{
+  font-family:'Fraunces',serif;font-weight:700;font-size:3rem;line-height:0.7;float:left;
+  padding:8px 8px 0 0;color:var(--sindoor-deep);
+}
+.story-callout{
+  position:relative;margin:22px 0;padding:18px 18px 16px 20px;
+  background:linear-gradient(135deg,var(--ivory-deep),#fff);
+  border:1.5px solid var(--paper-line);border-left:4px solid var(--sindoor);
+  border-radius:12px;box-shadow:0 6px 18px rgba(58,19,21,0.08);
+}
+.story-callout .sc-tag{
+  display:flex;align-items:center;gap:8px;font-family:'Fraunces',serif;font-weight:700;
+  font-size:1rem;color:var(--sindoor-deep);margin-bottom:8px;
+}
+.story-callout .sc-tag .icon{font-size:1.15rem;}
+.story-callout p{margin:0;color:var(--ink-soft);line-height:1.75;}
+.story-highlight{
+  text-align:center;margin:24px 0;padding:18px 16px;background:var(--ivory-deep);
+  border:1.5px dashed var(--marigold);border-radius:14px;
+}
+.story-highlight .icon-row{font-size:1.5rem;margin-bottom:6px;}
+.story-highlight .sh-title{font-family:'Fraunces',serif;font-weight:700;color:var(--sindoor-deep);font-size:1.1rem;margin:0 0 4px;}
+.story-highlight .sh-caption{color:var(--ink-soft);font-size:0.84rem;margin:0;}
+.story-quote{
+  position:relative;margin:22px 0;padding:20px 20px 20px 46px;background:var(--ivory);
+  border:1.5px solid var(--paper-line);border-radius:12px;font-style:italic;color:var(--ink-soft);
+  line-height:1.8;font-size:0.95rem;
+}
+.story-quote::before{
+  content:"\201C";position:absolute;left:12px;top:0px;font-family:'Fraunces',serif;font-size:2.6rem;
+  font-style:normal;color:var(--marigold);line-height:1;
+}
+.story-emphasis{
+  text-align:center;margin:24px 0;padding:16px 18px;border-radius:12px;
+  background:var(--ivory-deep);border:1.5px solid var(--paper-line);
+  font-weight:600;color:var(--sindoor-deep);font-size:1rem;line-height:1.7;
+}
+.story-emphasis strong{color:var(--sindoor);}
+.story-moral{
+  position:relative;margin-top:8px;padding:24px 20px;border-radius:16px;text-align:center;overflow:hidden;
+  background:linear-gradient(150deg,var(--sindoor-deep),#5c1015);box-shadow:0 14px 30px rgba(58,19,21,0.25);
+}
+.story-moral::before{content:"❁";position:absolute;font-size:6rem;color:rgba(255,255,255,0.05);top:-20px;left:-10px;}
+.story-moral .sm-tag{
+  display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:0.68rem;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--marigold);
+  border:1px solid rgba(232,169,59,0.5);padding:4px 12px;border-radius:16px;margin-bottom:10px;
+}
+.story-moral p{margin:0;color:#fff7ea;font-weight:600;font-size:1.02rem;line-height:1.7;font-style:italic;}
 </style>
 </head>
 <body>
@@ -421,6 +502,7 @@ button:disabled,input:disabled,select:disabled,textarea:disabled{
       <span class="dh-name" data-i18n="hero_title">Ganesh Chaturthi 2026</span>
       <button class="drawer-close" onclick="closeDrawer()" aria-label="Close menu">✕</button>
     </div>
+    <button class="drawer-item" data-tab="history" data-i18n="nav_history">Ganesh History</button>
     <button class="drawer-item" data-tab="register" data-i18n="nav_register">Register</button>
     <button class="drawer-item" data-tab="contact" data-i18n="nav_contact">Contact</button>
     <button class="drawer-item" data-tab="schedule" data-i18n="nav_schedule">Schedule</button>
@@ -450,6 +532,83 @@ button:disabled,input:disabled,select:disabled,textarea:disabled{
   </div>
 
   <!-- HOME -->
+  <section class="panel" id="panel-history">
+    <div class="card">
+      <div class="history-hero">
+        <span class="h-kicker">📜 ಕಥಾಗುಚ್ಛ</span>
+        <h2>ನಮ್ಮೂರಿನ ಗಣೇಶೋತ್ಸವ</h2>
+        <p class="h-sub">ಒಗ್ಗಟ್ಟಿನ ಹಬ್ಬ</p>
+      </div>
+      <div class="history-ornament"><span>🕉️</span></div>
+
+      <div class="story-scroll">
+      <p class="first-para">ಒಂದು ಪುಟ್ಟ ಗ್ರಾಮ. ಆ ಗ್ರಾಮದಲ್ಲಿ ಅಕ್ಕಪಕ್ಕದ ಮನೆಯ ಜನರೆಲ್ಲರೂ ಒಂದೇ ಕುಟುಂಬದವರಂತೆ ಅನ್ಯೋನ್ಯವಾಗಿ, ಒಗ್ಗಟ್ಟಿನಿಂದ ಬದುಕುತ್ತಿದ್ದರು. ಆ ಗ್ರಾಮದಲ್ಲಿದ್ದ ಒಂದು ಚಿಕ್ಕ ಓಣಿಯಲ್ಲಿ ಮುದ್ದಾದ ಮಕ್ಕಳು ಪ್ರತಿದಿನವೂ ತುಂಟಾಟ ಮಾಡುತ್ತಾ, ಆಟವಾಡುತ್ತಾ ಸಂತೋಷದಿಂದ ಕಾಲ ಕಳೆಯುತ್ತಿದ್ದರು.</p>
+
+      <p>ಆ ಮಕ್ಕಳ ತುಂಟಾಟವನ್ನು ನೋಡುವುದೇ ನೋಡುಗರ ಕಣ್ಣಿಗೆ ಹಿತವನ್ನು ನೀಡುತ್ತಿತ್ತು. ಅವರ ಮುಗ್ಧ ಮನಸ್ಸು ಎಂತಹ ಕಠಿಣ ಮನಸ್ಸಿನವರನ್ನೂ ಬದಲಾಯಿಸುವಷ್ಟು ಶಕ್ತಿಯುತವಾಗಿತ್ತು. ಶಾಲೆಯ ಅಭ್ಯಾಸ ಮುಗಿದ ಕೂಡಲೇ ಮಕ್ಕಳೆಲ್ಲರೂ ಎಂದಿನಂತೆ ಒಟ್ಟಾಗಿ ಸೇರಿ ಆಟವಾಡುತ್ತಿದ್ದರು.</p>
+
+      <p>ಹೀಗಿರುವಾಗ ಒಂದು ದಿನ ಗಣೇಶ ಚತುರ್ಥಿಯ ಹಬ್ಬ ಬಂದಿತು. ಎಲ್ಲೆಡೆ ಹಬ್ಬದ ಸಂಭ್ರಮ ಮನೆಮಾಡಿತ್ತು. ಮಕ್ಕಳು ಎಂದಿನಂತೆ ಆಟವಾಡುತ್ತಾ, ಒಬ್ಬರಿಗೊಬ್ಬರು ಮಾತನಾಡುತ್ತಾ ಇದ್ದಾಗ ಅವರ ಮನಸ್ಸಿನಲ್ಲಿ ಗಣೇಶನ ಮೂರ್ತಿಯನ್ನು ತಾವೇ ತಯಾರಿಸಬೇಕೆಂಬ ಆಲೋಚನೆ ಮೂಡಿತು.</p>
+
+      <div class="story-callout">
+        <div class="sc-tag"><span class="icon">🙏</span> ಕೈಚಳಕ ಮತ್ತು ಭಕ್ತಿ</div>
+        <p>ಮಕ್ಕಳು ಮಣ್ಣನ್ನು ಸಂಗ್ರಹಿಸಿ, ತಮ್ಮ ಕೈಗಳಿಂದಲೇ ಮಣ್ಣಿನ ಗಣಪತಿಯ ಮೂರ್ತಿಯನ್ನು ರೂಪಿಸಲು ಪ್ರಾರಂಭಿಸಿದರು. ಆ ದೃಶ್ಯವನ್ನು ನೋಡಿದಾಗ ಪಾರ್ವತಿಯು ಗಣೇಶನಿಗೆ ರೂಪ ನೀಡಿದ ಪೌರಾಣಿಕ ಕಥೆಯೇ ನೆನಪಾಗುವಂತಿತ್ತು.</p>
+      </div>
+
+      <p>ಮುದ್ದಾದ ಮಕ್ಕಳು ಚಿಕ್ಕ ವಯಸ್ಸಿನಲ್ಲಿಯೇ ಕೆಲಸವನ್ನು ಹಂಚಿಕೊಂಡು, ಒಗ್ಗಟ್ಟಿನಿಂದ ಕೆಲಸ ಮಾಡುವ ಅಭ್ಯಾಸವನ್ನು ಬೆಳೆಸಿಕೊಂಡಿದ್ದರು. ಒಬ್ಬರು ಗಣೇಶನ ದೇಹವನ್ನು ರೂಪಿಸುತ್ತಿದ್ದರೆ, ಮತ್ತೊಬ್ಬರು ಕೈ-ಕಾಲುಗಳನ್ನು ತಯಾರಿಸುತ್ತಿದ್ದರು. ಇನ್ನೊಬ್ಬರು ಗಣೇಶನ ಮೂರ್ತಿಗೆ ಬೇಕಾದ ಅಲಂಕಾರಿಕ ವಸ್ತುಗಳನ್ನು ಸಿದ್ಧಪಡಿಸುತ್ತಿದ್ದರು.</p>
+
+      <p>ಆದರೆ ಗಣೇಶನಿಗೆ ಆಕರ್ಷಕವಾದ ದೊಡ್ಡ ಹೊಟ್ಟೆಯನ್ನು ರೂಪಿಸುವುದು ಮಕ್ಕಳಿಗೆ ಸ್ವಲ್ಪ ಕಷ್ಟವಾಯಿತು. ಆಗ ಅವರಿಗೆ ಒಬ್ಬ ಮುದ್ದಾದ ಬಾಲಕನ ನೆನಪಾಯಿತು. ಆ ಬಾಲಕನ ಮೈಕಟ್ಟು ಗಣೇಶನಂತೆಯೇ ಕಾಣಿಸುತ್ತಿತ್ತು. ಅವನನ್ನು ನೆನಪಿಸಿಕೊಂಡ ಮಕ್ಕಳು ಅದೇ ರೀತಿಯಲ್ಲಿ ಗಣಪತಿಯ ದೊಡ್ಡ ಹೊಟ್ಟೆಯನ್ನು ಸುಂದರವಾಗಿ ರೂಪಿಸಿದರು.</p>
+
+      <div class="story-highlight">
+        <div class="icon-row">🐘✨</div>
+        <p class="sh-title">ಅಲಂಕೃತ ಗಣೇಶ ಮೂರ್ತಿ</p>
+        <p class="sh-caption">ಗ್ರಾಮದ ಜನರ ಭಕ್ತಿ ಹಾಗೂ ಒಗ್ಗಟ್ಟಿನ ಸಂಕೇತವಾಗಿ ರಾಜಾರೋಷವಾಗಿ ಕಂಗೊಳಿಸಿದ ಗಣೇಶ</p>
+      </div>
+
+      <p>ಗಣೇಶನ ಮೂರ್ತಿ ಸಿದ್ಧವಾದ ನಂತರ ಮಕ್ಕಳ ಮನಸ್ಸಿನಲ್ಲಿ ಮತ್ತೊಂದು ಆಲೋಚನೆ ಮೂಡಿತು — "ನಾವೆಲ್ಲರೂ ಸೇರಿ ಗಣೇಶನನ್ನು ಪ್ರತಿಷ್ಠಾಪಿಸೋಣ" ಎಂದು ಮಕ್ಕಳು ನಿರ್ಧರಿಸಿದರು.</p>
+
+      <p>ಅದಕ್ಕಾಗಿ ಗಣೇಶನನ್ನು ಪ್ರತಿಷ್ಠಾಪಿಸಲು ಸೂಕ್ತವಾದ ಜಾಗವನ್ನು ಹುಡುಕಲು ಪ್ರಾರಂಭಿಸಿದರು. ಕೊನೆಗೆ ಅವರಿಗೆ ಒಂದು ಚಿಕ್ಕದಾದ ಖಾಲಿ ಕೋಣೆ ಸಿಕ್ಕಿತು. ಆ ಮನೆಯಲ್ಲಿ ಆ ಸಮಯದಲ್ಲಿ ಯಾರೂ ವಾಸಿಸುತ್ತಿರಲಿಲ್ಲ. ಮಕ್ಕಳಿಗೆ ಆ ಸ್ಥಳ ಸೂಕ್ತವೆನಿಸಿತು. ಮಕ್ಕಳೆಲ್ಲರೂ ಸೇರಿ ಮೊದಲ ಬಾರಿಗೆ ತಮ್ಮ ಕೈಗಳಿಂದಲೇ ಮಣ್ಣಿನಿಂದ ತಯಾರಿಸಿದ ಗಣೇಶನ ಮೂರ್ತಿಯನ್ನು ಆ ಕೋಣೆಯಲ್ಲಿ ಬಹಳ ಉತ್ಸಾಹದಿಂದ ಪ್ರತಿಷ್ಠಾಪಿಸಿದರು.</p>
+
+      <p>ಈ ವಿಷಯವನ್ನು ಓಣಿಯಲ್ಲಿದ್ದ ಒಬ್ಬ ಮುಗ್ಧ ಮನಸ್ಸಿನ ತಾಯಿಗೆ ಮಕ್ಕಳು ತಿಳಿಸಿದರು. ಮಕ್ಕಳ ಉತ್ಸಾಹವನ್ನು ಕಂಡ ಆ ತಾಯಿ ಅವರಿಗೆ ಪ್ರೋತ್ಸಾಹ ಮತ್ತು ಬೆಂಬಲ ನೀಡಿದರು. ಗಣೇಶನ ಮುಂದೆ ದೀಪ ಹಚ್ಚಲು ಬೇಕಾದ ಸಾಮಾಗ್ರಿಗಳನ್ನು ಒದಗಿಸಿದರು.</p>
+
+      <p>ನಂತರ ಮಕ್ಕಳು ಗಣೇಶೋತ್ಸವವನ್ನು ಇನ್ನಷ್ಟು ಚೆನ್ನಾಗಿ ಆಚರಿಸಲು ಹಣ ಸಂಗ್ರಹಿಸಲು ಆರಂಭಿಸಿದರು. ಮನೆಮನೆಗೆ ತೆರಳಿ ತಮ್ಮ ಉದ್ದೇಶವನ್ನು ತಿಳಿಸಿ ಧನಸಹಾಯವನ್ನು ಕೇಳಿದರು. ಗ್ರಾಮದ ಕುಟುಂಬಗಳು ಯಾವುದೇ ರೀತಿಯ ಅಡ್ಡಿಪಡಿಸದೆ ಮಕ್ಕಳಿಗೆ ತಮ್ಮ ಕೈಲಾದಷ್ಟು ಸಹಾಯ ಮಾಡಿದರು. ಮಕ್ಕಳ ಪ್ರಯತ್ನವನ್ನು ಕಂಡ ಗ್ರಾಮದ ಜನರೂ ಅವರನ್ನು ಪ್ರೋತ್ಸಾಹಿಸಿ, ಈ ಒಳ್ಳೆಯ ಕಾರ್ಯಕ್ಕೆ ಕೈಜೋಡಿಸಿದರು.</p>
+
+      <p>ಮುಂದಿನ ವರ್ಷ ಗಣೇಶೋತ್ಸವ ಬಂದಾಗ ಗ್ರಾಮದ ಒಬ್ಬ ದಾನಿಗಳು ಗಣೇಶನ ಮೂರ್ತಿಯನ್ನು ಕೊಡಿಸುವುದಾಗಿ ಮುಂದೆ ಬಂದರು. ಮಕ್ಕಳು ಕಳೆದ ವರ್ಷದಷ್ಟೇ ಉತ್ಸಾಹದಿಂದ ಈ ಬಾರಿಯ ಗಣೇಶೋತ್ಸವವನ್ನೂ ಅಚ್ಚುಕಟ್ಟಾಗಿ ನೆರವೇರಿಸಿದರು. ಗ್ರಾಮದ ಗುರುಹಿರಿಯರು ಮತ್ತು ತಾಯಂದಿರು ಕೂಡ ಮಕ್ಕಳ ಈ ಕಾರ್ಯಕ್ಕೆ ಸಂಪೂರ್ಣ ಬೆಂಬಲ ನೀಡಿದರು.</p>
+
+      <div class="story-quote">
+        ಹೀಗೆ ಮಕ್ಕಳ ಚಿಕ್ಕ ಪ್ರಯತ್ನವು ನಿಧಾನವಾಗಿ ಒಂದು ದೊಡ್ಡ ಆಚರಣೆಯ ರೂಪ ಪಡೆಯಿತು. ಅದು ಕೇವಲ ಒಂದು ಹಬ್ಬವಾಗಿ ಉಳಿಯದೆ, ಗ್ರಾಮದ ಜನರನ್ನು ಒಗ್ಗೂಡಿಸುವ ಒಂದು ನಂಬಿಕೆ, ಭಕ್ತಿ ಮತ್ತು ಹಿತಾಶಯದ ಸಂಕೇತವಾಗಿ ಬೆಳೆಯತೊಡಗಿತು.
+      </div>
+
+      <p>ವರ್ಷಗಳು ಕಳೆದಂತೆ ಗಣೇಶನ ಮೂರ್ತಿಯನ್ನು ಕೊಡಿಸುವ ದಾನಿಗಳ ಸಂಖ್ಯೆಯೂ ಹೆಚ್ಚಾಯಿತು. ಪ್ರತಿವರ್ಷ ಗಣೇಶೋತ್ಸವದ ಸಂಭ್ರಮ ಮತ್ತಷ್ಟು ಅದ್ಧೂರಿಯಾಗಿ ನಡೆಯತೊಡಗಿತು. ಒಂದು ವರ್ಷದ ಗಣೇಶೋತ್ಸವದ ಸಂದರ್ಭದಲ್ಲಿ ಗ್ರಾಮದ ಎಲ್ಲರ ಮನಸ್ಸಿನಲ್ಲೂ ಮತ್ತೊಂದು ಆಲೋಚನೆ ಮೂಡಿತು — <strong>ಅನ್ನಸಂತರ್ಪಣೆ ಮಾಡಬೇಕು</strong> ಎಂಬುದು.</p>
+
+      <p>ಚಿಕ್ಕ ಓಣಿಯ ಗುರುಹಿರಿಯರು ಮತ್ತು ತಾಯಂದಿರು ಒಟ್ಟಾಗಿ ಸೇರಿ ಅನ್ನಸಂತರ್ಪಣೆಗೆ ಬೇಕಾಗುವ ಸಾಮಾಗ್ರಿಗಳನ್ನು ಒದಗಿಸಲು ಮುಂದೆ ಬಂದರು. ಇದರಿಂದ ಮಕ್ಕಳಿಗೆ ಮತ್ತಷ್ಟು ಸಂತೋಷವಾಯಿತು. "ನಮ್ಮ ಕಾರ್ಯಕ್ಕೆ ಇನ್ನಷ್ಟು ಜನರ ಬೆಂಬಲ ಸಿಕ್ಕಿದೆ" ಎಂಬ ಭಾವನೆ ಅವರಲ್ಲಿ ಮೂಡಿತು. ಒಂದು ದಿನ ಗ್ರಾಮದ ಎಲ್ಲ ಭಕ್ತರೂ ಅನ್ನಸಂತರ್ಪಣೆ ಮಾಡಿ ಪ್ರಸಾದವನ್ನು ವಿತರಿಸಲಾಯಿತು. ಗ್ರಾಮದ ಜನರೆಲ್ಲರೂ ಒಟ್ಟಾಗಿ ಸೇರಿ ಈ ಸೇವೆಯಲ್ಲಿ ಭಾಗವಹಿಸಿದರು.</p>
+
+      <p>ಮುಂದಿನ ವರ್ಷ ಗಣೇಶೋತ್ಸವಕ್ಕೆ ಕೆಲವೇ ದಿನಗಳು ಬಾಕಿಯಿದ್ದಾಗ, ವರ್ಷಗಳಿಂದ ಗಣೇಶನನ್ನು ಪ್ರತಿಷ್ಠಾಪಿಸುತ್ತಿದ್ದ ಆ ಕೋಣೆ ಮಳೆಯಿಂದಾಗಿ ಅಸ್ತವ್ಯಸ್ತವಾಯಿತು. ಆಗ ಮಕ್ಕಳು ಮತ್ತು ಗುರುಹಿರಿಯರು ಸೇರಿ ಏನು ಮಾಡಬೇಕು ಎಂದು ಚರ್ಚಿಸಿದರು. ಆ ಸಂದರ್ಭದಲ್ಲಿ ಒಬ್ಬ ತಾಯಿ, "ನೀವೆಲ್ಲರೂ ಸೇರಿ ಗ್ರಾಮದ ಗುರುಗಳನ್ನು ಭೇಟಿ ಮಾಡಿ. ಅವರು ಹೇಳುವ ಮಾರ್ಗದಲ್ಲಿ ನಾವು ನಡೆಯೋಣ" ಎಂದು ಸಲಹೆ ನೀಡಿದರು.</p>
+
+      <p>ಹಬ್ಬಕ್ಕೆ ಸಮಯ ಕಡಿಮೆಯಿದ್ದ ಕಾರಣ ಮಕ್ಕಳು ತಕ್ಷಣವೇ ಮುಂದಿನ ಹೆಜ್ಜೆಯ ಬಗ್ಗೆ ಯೋಚಿಸಿದರು. ಆಗ ಗ್ರಾಮದ ಒಬ್ಬ ದಾನಿಗಳ ಮನೆ ಖಾಲಿಯಾಗಿರುವುದು ಅವರಿಗೆ ನೆನಪಾಯಿತು. ಮಕ್ಕಳೆಲ್ಲರೂ ಸೇರಿ ಆ ದಾನಿಗಳ ಮನೆಗೆ ತೆರಳಿ ಗಣೇಶೋತ್ಸವಕ್ಕೆ ಜಾಗದ ಅವಶ್ಯಕತೆಯಿದೆ ಎಂದು ತಿಳಿಸಿದರು. ಮಕ್ಕಳ ಉತ್ಸಾಹ ಮತ್ತು ಒಗ್ಗಟ್ಟನ್ನು ಕಂಡ ದಾನಿಗಳು ಗಣೇಶೋತ್ಸವ ನಡೆಸಲು ತಮ್ಮ ಮನೆಯನ್ನು ಬಳಸಿಕೊಳ್ಳಲು ಒಪ್ಪಿಗೆ ನೀಡಿದರು.</p>
+
+      <p>ಇದರಿಂದ ಮಕ್ಕಳ ಸಂತೋಷಕ್ಕೆ ಪಾರವೇ ಇರಲಿಲ್ಲ. ಮಕ್ಕಳು, ಗುರುಹಿರಿಯರು ಮತ್ತು ಗ್ರಾಮದ ಜನರೆಲ್ಲರೂ ಸೇರಿ ಆ ಮನೆಯನ್ನು ಸ್ವಚ್ಛಗೊಳಿಸಿದರು. ರಸ್ತೆಯನ್ನೂ ಸ್ವಚ್ಛಗೊಳಿಸಿ, ಗಣೇಶನನ್ನು ಪ್ರತಿಷ್ಠಾಪಿಸಲು ಬೇಕಾದ ವ್ಯವಸ್ಥೆಗಳನ್ನು ಮಾಡಿದರು. ಆ ವರ್ಷದ ಗಣೇಶೋತ್ಸವವನ್ನು ಹಿಂದಿನ ವರ್ಷಗಳಿಗಿಂತಲೂ ಹೆಚ್ಚು ಅದ್ಧೂರಿಯಾಗಿ ಆಚರಿಸಿದರು.</p>
+
+      <p>ವರ್ಷಗಳು ಕಳೆದಂತೆ ಗಣೇಶೋತ್ಸವಕ್ಕೆ ಬೇಕಾದ ಸುಂದರವಾದ ಅಲಂಕಾರಿಕ ಸಾಮಾಗ್ರಿಗಳನ್ನು ಗ್ರಾಮದ ಜನರೆಲ್ಲರೂ ಸೇರಿ ಖರೀದಿಸಲು ಪ್ರಾರಂಭಿಸಿದರು. ಮುಂದಿನ ವರ್ಷಗಳಲ್ಲಿ ಗಣೇಶೋತ್ಸವವನ್ನು ಇನ್ನಷ್ಟು ವ್ಯವಸ್ಥಿತವಾಗಿ ನಡೆಸುವ ಉದ್ದೇಶದಿಂದ ಗ್ರಾಮದ ಮಕ್ಕಳು, ಯುವಕರು, ಗುರುಹಿರಿಯರು ಮತ್ತು ತಾಯಂದಿರು ಸೇರಿ ಒಂದು ಸಭೆಯನ್ನು ನಡೆಸಿದರು. ಅನ್ನಸಂತರ್ಪಣೆ, ಸಾಂಸ್ಕೃತಿಕ ಕಾರ್ಯಕ್ರಮಗಳು ಹಾಗೂ ಇತರ ಕಾರ್ಯಕ್ರಮಗಳ ಬಗ್ಗೆ ಚರ್ಚಿಸಿದರು. ಎಲ್ಲರೂ ಒಮ್ಮತದಿಂದ ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ನಡೆಸಲು ನಿರ್ಧರಿಸಿದರು.</p>
+
+      <p>ಒಂದು ದಿನದ ನಂತರ ವಿವಿಧ ಸಾಂಸ್ಕೃತಿಕ ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ಆಯೋಜಿಸಲಾಯಿತು. ಗ್ರಾಮದ ಅನೇಕರು ಆ ಕಾರ್ಯಕ್ರಮಗಳಲ್ಲಿ ಭಾಗವಹಿಸಿ ತಮ್ಮ ಪ್ರತಿಭೆಯನ್ನು ಪ್ರದರ್ಶಿಸಿದರು. ಉತ್ತಮವಾಗಿ ಭಾಗವಹಿಸಿದವರಿಗೆ ಬಹುಮಾನಗಳನ್ನು ನೀಡಿ ಗೌರವಿಸಲಾಯಿತು.</p>
+
+      <p>ಆ ಸಂದರ್ಭದಲ್ಲಿ ಎಲ್ಲರ ಮನಸ್ಸಿನಲ್ಲೂ ಒಂದೇ ಭಾವನೆ ಮೂಡಿತು — "ನಮ್ಮ ಸಂಘಟನೆಗೆ ಇನ್ನಷ್ಟು ಬೆಂಬಲ ಸಿಕ್ಕಿದೆ. ನಾವು ಇನ್ನೂ ಹೆಚ್ಚಿನ ಒಗ್ಗಟ್ಟಿನಿಂದ ಗಣೇಶೋತ್ಸವವನ್ನು ಮುಂದುವರಿಸಬೇಕು."</p>
+
+      <p>ಹೀಗೆ ಕೆಲವು ಮುದ್ದಾದ ಮಕ್ಕಳ ಚಿಕ್ಕ ಪ್ರಯತ್ನದಿಂದ ಆರಂಭವಾದ ಗಣೇಶೋತ್ಸವವು ವರ್ಷದಿಂದ ವರ್ಷಕ್ಕೆ ಬೆಳೆಯುತ್ತಾ, ಇಡೀ ಗ್ರಾಮದ ಜನರನ್ನು ಒಗ್ಗೂಡಿಸುವ ಮಹತ್ವದ ಆಚರಣೆಯಾಗಿ ರೂಪುಗೊಂಡಿತು.</p>
+      </div>
+
+      <div class="story-emphasis">ಇದು ಕೇವಲ ಗಣೇಶನ ಹಬ್ಬವಲ್ಲ. ಇದು <strong>ಭಕ್ತಿ, ನಂಬಿಕೆ, ಸೇವೆ, ಸಹಕಾರ, ಒಗ್ಗಟ್ಟು ಮತ್ತು ಮಾನವೀಯತೆಯ ಹಬ್ಬ.</strong></div>
+
+      <div class="story-scroll">
+      <p>ಮಕ್ಕಳ ಮುಗ್ಧ ಮನಸ್ಸಿನಲ್ಲಿ ಹುಟ್ಟಿದ ಒಂದು ಚಿಕ್ಕ ಆಲೋಚನೆ, ಗ್ರಾಮದ ಗುರುಹಿರಿಯರು, ತಾಯಂದಿರು, ದಾನಿಗಳು ಮತ್ತು ಪ್ರತಿಯೊಬ್ಬ ಗ್ರಾಮಸ್ಥರ ಸಹಕಾರದಿಂದ ಇಂದು ಒಂದು ದೊಡ್ಡ ಸಂಭ್ರಮವಾಗಿ ಬೆಳೆದಿದೆ.</p>
+      </div>
+
+      <div class="story-moral">
+        <span class="sm-tag">✨ ಸಂದೇಶ / ನೀತಿ</span>
+        <p>"ಒಗ್ಗಟ್ಟಿನಲ್ಲಿ ಬಲವಿದೆ; ಒಳ್ಳೆಯ ಕಾರ್ಯಕ್ಕೆ ಕೈಜೋಡಿಸಿದರೆ ಚಿಕ್ಕ ಪ್ರಯತ್ನವೂ ದೊಡ್ಡ ಸಾಧನೆಯಾಗುತ್ತದೆ."</p>
+      </div>
+    </div>
+  </section>
+
   <section class="panel" id="panel-register">
     <div class="card">
       <h2 data-i18n="register_title">Register for an Event</h2>
@@ -646,19 +805,11 @@ button:disabled,input:disabled,select:disabled,textarea:disabled{
       <input id="exp-amt" type="number">
       <label>Paid by</label>
       <input id="exp-paidby" placeholder="e.g. Ramesh Patil">
-      <label data-i18n="lbl_exp_desc">Description / Notes (optional)</label>
-      <textarea id="exp-desc" rows="2" data-i18n-ph="ph_exp_desc"></textarea>
       <button class="primary" onclick="addExpense()" data-i18n="btn_add_expense">Add expense</button>
     </div>
     <div class="card">
       <h2 data-i18n="exp_ledger_title">Expense Ledger</h2>
       <ul class="ledger-list" id="expense-list"></ul>
-    </div>
-    <div class="card">
-      <h2 data-i18n="exp_search_title">Search: Who spent what?</h2>
-      <p class="hint" data-i18n="exp_search_hint">Type a person's name to see every expense paid by them.</p>
-      <input id="exp-search-name" oninput="renderExpenseSearch()" data-i18n-ph="ph_exp_search_name">
-      <ul class="ledger-list" id="exp-search-results"></ul>
     </div>
   </section>
 
@@ -778,10 +929,11 @@ try{
 // ============ TRANSLATIONS ============
 const translations = {
   en: {
-    hero_sub:"Shree Siddhi Vinayaka Geleyara Balaga (TPT) Timmapur",
+    hero_sub:"Shree Siddhivinayaka Geleyara Balaga, Thimmapura · Vahi (Register)",
     hero_title:"Ganesh Chaturthi 2026",
     hero_tagline:"Ganpati Bappa Morya! Everything for Our Team in one place — schedule, donations, expenses, committee and more, kept openly like a proper ledger.",
     nav_home:"Home", nav_schedule:"Schedule", nav_register:"Register", nav_committee:"Committee",
+    nav_history:"Ganesh History",
     nav_donations:"🔒 Donations", nav_expenses:"🔒 Expenses", nav_prizes:"Prizes", nav_photos:"Photos",
     nav_registrations:"🔒 Registrations", nav_contact:"Contact", nav_message:"🔒 Send Message",
     register_title:"Register for an Event", register_hint:"Pick an event and leave your details — we'll be in touch if anything changes.",
@@ -816,11 +968,9 @@ const translations = {
     donations_total:"Total Donations", donations_contributors:"Contributors", don_add_title:"Record a donation",
     lbl_donor_name:"Donor name", lbl_donor_phone:"Phone number", lbl_amount:"Amount (₹)", lbl_received_by:"Amount received by", lbl_note:"Note (optional)",
     btn_add_donation:"Add donation", don_ledger_title:"Donation Ledger", don_empty:"No donations recorded yet.",
-    exp_search_title:"Search: Who spent what?", exp_search_hint:"Type a person's name to see every expense paid by them.", ph_exp_search_name:"e.g. Ramesh Patil", exp_search_empty:"No expenses found for that name.", exp_search_total:"Total",
     ph_note:"e.g. Cash / UPI", ph_received_by:"e.g. Ramesh Patil",
     expenses_total:"Total Expenses", expenses_net:"Net Balance", exp_add_title:"Record an expense",
     lbl_item:"Item", lbl_category:"Category", btn_add_expense:"Add expense", exp_ledger_title:"Expense Ledger", exp_empty:"No expenses recorded yet.",
-    lbl_exp_desc:"Description / Notes (optional)", ph_exp_desc:"e.g. Paid in advance, will get receipt later",
     ph_item:"e.g. Decoration flowers", ph_category:"Select a category", opt_select_category:"Select category",
     prizes_add_title:"Add competition results", lbl_competition_name:"Competition name", lbl_first_winner:"1st prize winner", lbl_second_winner:"2nd prize winner", lbl_first_sponsor:"1st prize sponsored by", lbl_second_sponsor:"2nd prize sponsored by", prize_sponsor_note:"If someone sponsors a prize, add their name below. The sponsor will be mentioned automatically in prize messages.",
     btn_add:"Add", prizes_list_title:"Prizes & Winners", prizes_empty:"No prizes added yet.", sponsored_by:"Sponsored by",
@@ -843,10 +993,11 @@ const translations = {
     toast_fill_required:"Please fill in the required fields",
   },
   kn: {
-    hero_sub:"ಶ್ರೀ ಸಿದ್ಧಿ ವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗ (TPT ) Timmapur",
+    hero_sub:"ಶ್ರೀ ಸಿದ್ಧಿವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗ, ತಿಮ್ಮಾಪುರ · ವಹಿ (ರಿಜಿಸ್ಟರ್)",
     hero_title:"ಗಣೇಶ ಚತುರ್ಥಿ ೨೦೨೬",
     hero_tagline:"ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ! ನಮ್ಮ ತಂಡದ ಎಲ್ಲಾ ಮಾಹಿತಿ ಒಂದೇ ಕಡೆ — ವೇಳಾಪಟ್ಟಿ, ದೇಣಿಗೆ, ಖರ್ಚು, ಸಮಿತಿ ಮತ್ತು ಇನ್ನೂ ಹೆಚ್ಚು, ಪಾರದರ್ಶಕವಾಗಿ.",
     nav_home:"ಮುಖಪುಟ", nav_schedule:"ವೇಳಾಪಟ್ಟಿ", nav_register:"ನೋಂದಣಿ", nav_committee:"ಸಮಿತಿ",
+    nav_history:"ಗಣೇಶ ಇತಿಹಾಸ",
     nav_donations:"🔒 ದೇಣಿಗೆಗಳು", nav_expenses:"🔒 ಖರ್ಚುಗಳು", nav_prizes:"ಬಹುಮಾನಗಳು", nav_photos:"ಫೋಟೋಗಳು",
     nav_registrations:"🔒 ನೋಂದಣಿಗಳು", nav_contact:"ಸಂಪರ್ಕಿಸಿ", nav_message:"🔒 ಸಂದೇಶ ಕಳುಹಿಸಿ",
     register_title:"ಕಾರ್ಯಕ್ರಮಕ್ಕೆ ನೋಂದಾಯಿಸಿ", register_hint:"ಒಂದು ಕಾರ್ಯಕ್ರಮವನ್ನು ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು ನಿಮ್ಮ ವಿವರಗಳನ್ನು ನೀಡಿ — ಏನಾದರೂ ಬದಲಾವಣೆಯಾದರೆ ನಾವು ತಿಳಿಸುತ್ತೇವೆ.",
@@ -881,11 +1032,9 @@ const translations = {
     donations_total:"ಒಟ್ಟು ದೇಣಿಗೆ", donations_contributors:"ದಾನಿಗಳು", don_add_title:"ದೇಣಿಗೆ ದಾಖಲಿಸಿ",
     lbl_donor_name:"ದಾನಿಯ ಹೆಸರು", lbl_donor_phone:"ಫೋನ್ ಸಂಖ್ಯೆ", lbl_amount:"ಮೊತ್ತ (₹)", lbl_received_by:"ಮೊತ್ತ ಸ್ವೀಕರಿಸಿದವರು", lbl_note:"ಟಿಪ್ಪಣಿ (ಐಚ್ಛಿಕ)",
     btn_add_donation:"ದೇಣಿಗೆ ಸೇರಿಸಿ", don_ledger_title:"ದೇಣಿಗೆ ಲೆಕ್ಕಪುಸ್ತಕ", don_empty:"ಇನ್ನೂ ಯಾವುದೇ ದೇಣಿಗೆ ದಾಖಲಾಗಿಲ್ಲ.",
-    exp_search_title:"ಹುಡುಕಿ: ಯಾರು ಎಷ್ಟು ಖರ್ಚು ಮಾಡಿದ್ದಾರೆ?", exp_search_hint:"ಒಬ್ಬ ವ್ಯಕ್ತಿಯ ಹೆಸರನ್ನು ಟೈಪ್ ಮಾಡಿ, ಅವರು ಪಾವತಿಸಿದ ಎಲ್ಲಾ ಖರ್ಚುಗಳನ್ನು ನೋಡಿ.", ph_exp_search_name:"ಉದಾ. ರಮೇಶ್ ಪಾಟೀಲ್", exp_search_empty:"ಆ ಹೆಸರಿಗೆ ಯಾವುದೇ ಖರ್ಚು ಕಂಡುಬಂದಿಲ್ಲ.", exp_search_total:"ಒಟ್ಟು",
     ph_note:"ಉದಾ: ನಗದು / UPI", ph_received_by:"ಉದಾ: ರಮೇಶ್ ಪಾಟೀಲ್",
     expenses_total:"ಒಟ್ಟು ಖರ್ಚು", expenses_net:"ನಿವ್ವಳ ಬಾಕಿ", exp_add_title:"ಖರ್ಚು ದಾಖಲಿಸಿ",
     lbl_item:"ವಸ್ತು", lbl_category:"ವಿಭಾಗ", btn_add_expense:"ಖರ್ಚು ಸೇರಿಸಿ", exp_ledger_title:"ಖರ್ಚು ಲೆಕ್ಕಪುಸ್ತಕ", exp_empty:"ಇನ್ನೂ ಯಾವುದೇ ಖರ್ಚು ದಾಖಲಾಗಿಲ್ಲ.",
-    lbl_exp_desc:"ವಿವರಣೆ / ಟಿಪ್ಪಣಿಗಳು (ಐಚ್ಛಿಕ)", ph_exp_desc:"ಉದಾ. ಮುಂಗಡ ಪಾವತಿಸಲಾಗಿದೆ, ರಸೀದಿ ನಂತರ ಸಿಗುತ್ತದೆ",
     ph_item:"ಉದಾ: ಅಲಂಕಾರದ ಹೂವುಗಳು", ph_category:"ವಿಭಾಗ ಆಯ್ಕೆಮಾಡಿ", opt_select_category:"ವಿಭಾಗ ಆಯ್ಕೆಮಾಡಿ",
     prizes_add_title:"ಸ್ಪರ್ಧೆಯ ಫಲಿತಾಂಶ ಸೇರಿಸಿ", lbl_competition_name:"ಸ್ಪರ್ಧೆಯ ಹೆಸರು", lbl_first_winner:"ಮೊದಲ ಬಹುಮಾನ ವಿಜೇತ", lbl_second_winner:"ಎರಡನೇ ಬಹುಮಾನ ವಿಜೇತ", lbl_first_sponsor:"ಮೊದಲ ಬಹುಮಾನ ಪ್ರಾಯೋಜಕರು", lbl_second_sponsor:"ಎರಡನೇ ಬಹುಮಾನ ಪ್ರಾಯೋಜಕರು", prize_sponsor_note:"ಯಾರಾದರೂ ಬಹುಮಾನ ಪ್ರಾಯೋಜಿಸಿದ್ದರೆ ಅವರ ಹೆಸರನ್ನು ಕೆಳಗೆ ಹಾಕಿ. ಬಹುಮಾನಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ಸಂದೇಶದಲ್ಲಿ ಪ್ರಾಯೋಜಕರ ಹೆಸರನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸೇರಿಸಲಾಗುತ್ತದೆ.",
     btn_add:"ಸೇರಿಸಿ", prizes_list_title:"ಬಹುಮಾನಗಳು ಮತ್ತು ವಿಜೇತರು", prizes_empty:"ಇನ್ನೂ ಯಾವುದೇ ಬಹುಮಾನ ಸೇರಿಸಿಲ್ಲ.", sponsored_by:"ಪ್ರಾಯೋಜಕರು",
@@ -1512,44 +1661,14 @@ function renderExpenses(){
   const total = list.reduce((s,d)=>s+Number(d.amount),0);
   list.forEach((d,idx)=>{
     const li = document.createElement('li');
-    const descHtml = d.description ? `<div class="exp-desc">${d.description}</div>` : '';
     li.innerHTML = `<div class="li-main"><span class="name">${d.item}</span>
-      <span class="meta">${d.category || ''}${d.paidBy ? ` · Paid by ${d.paidBy}` : ''}</span>
-      ${descHtml}</div>
+      <span class="meta">${d.category || ''}${d.paidBy ? ` · Paid by ${d.paidBy}` : ''}</span></div>
       <div style="display:flex;align-items:center;gap:8px;">
       <span class="li-amt">${fmt(d.amount)}</span>
       <button class="del-x" onclick="deleteItem('expenses',${idx})">✕</button></div>`;
     el.insertBefore(li, el.firstChild);
   });
   $('exp-total').textContent = fmt(total);
-  renderExpenseSearch();
-}
-
-// Lets the admin look up every expense a specific person paid for, without
-// scrolling the whole ledger — lives in the Donations tab per request.
-function renderExpenseSearch(){
-  const input = $('exp-search-name');
-  const el = $('exp-search-results');
-  if(!input || !el) return;
-  const query = input.value.trim().toLowerCase();
-  el.innerHTML = '';
-  if(!query) return;
-  const matches = appState.expenses.filter(d => (d.paidBy||'').toLowerCase().includes(query));
-  if(matches.length===0){ el.innerHTML = `<li class="empty">${t('exp_search_empty')}</li>`; return; }
-  matches.forEach(d=>{
-    const li = document.createElement('li');
-    const descHtml = d.description ? `<div class="exp-desc">${d.description}</div>` : '';
-    li.innerHTML = `<div class="li-main"><span class="name">${d.item}</span>
-      <span class="meta">${d.category || ''} · Paid by ${d.paidBy}</span>
-      ${descHtml}</div>
-      <span class="li-amt">${fmt(d.amount)}</span>`;
-    el.appendChild(li);
-  });
-  const total = matches.reduce((s,d)=>s+Number(d.amount),0);
-  const totalLi = document.createElement('li');
-  totalLi.style.fontWeight = '700';
-  totalLi.innerHTML = `<div class="li-main"><span class="name">${t('exp_search_total')}</span></div><span class="li-amt">${fmt(total)}</span>`;
-  el.appendChild(totalLi);
 }
 
 async function addExpense(){
@@ -1558,11 +1677,10 @@ async function addExpense(){
   const category = $('exp-cat').value;
   const amount = $('exp-amt').value;
   const paidBy = $('exp-paidby').value.trim();
-  const description = $('exp-desc').value.trim();
   if(!item || !category || !amount || !paidBy){ toast('toast_fill_required'); return; }
-  appState.expenses.push({item, category, amount:Number(amount), paidBy, description});
+  appState.expenses.push({item, category, amount:Number(amount), paidBy});
   renderExpenses(); renderBalance();
-  $('exp-item').value=''; $('exp-cat').value=''; $('exp-amt').value=''; $('exp-paidby').value=''; $('exp-desc').value='';
+  $('exp-item').value=''; $('exp-cat').value=''; $('exp-amt').value=''; $('exp-paidby').value='';
   toast('toast_added');
   await persistKey('expenses', appState.expenses);
 }
@@ -1831,17 +1949,20 @@ function buildMessage(name, type, amount){
   const latestPrize = appState.prizes.length ? appState.prizes[appState.prizes.length-1] : null;
   if(currentLang === 'kn'){
     const signOff = `ವಂದನೆಗಳೊಂದಿಗೆ,
-ಶ್ರೀ ಸಿದ್ಧಿ ವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗ (TPT) Timmapur`;
+ಶ್ರೀ ಸಿದ್ಧಿವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗ
+ತಿಮ್ಮಾಪುರ`;
     switch(type){
       case 'thanks': return `ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ 🙏
 
 ನಮಸ್ಕಾರ ${n} ಅವರೆ,
 
-ನಮ್ಮ ತಿಮ್ಮಾಪುರದ ಗಣೇಶ ಚತುರ್ಥಿ ಹಬ್ಬದ ಆಚರಣೆಗೆ ನೀವು ನೀಡಿದ ${a} ದೇಣಿಗೆಗೆ ತುಂಬಾ ಧನ್ಯವಾದಗಳು. ನಿಮ್ಮಂಥವರ ಸಹಕಾರದಿಂದ ನಮ್ಮ ಹಬ್ಬದ ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ಇನ್ನೂ ಚೆನ್ನಾಗಿ ಮಾಡೋಕೆ ಆಗ್ತಿದೆ. 🙏
+ತಿಮ್ಮಾಪುರ ಗ್ರಾಮದ ಶ್ರೀ ಸಿದ್ಧಿವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗದ ವತಿಯಿಂದ ಆಚರಿಸಲಾಗುತ್ತಿರುವ ಗಣೇಶ ಚತುರ್ಥಿ 2026ರ ಹಬ್ಬಕ್ಕಾಗಿ ನೀವು ನೀಡಿದ ${a} ದೇಣಿಗೆಗೆ ನಮ್ಮ ಅಂತರಂಗದ ಧನ್ಯವಾದಗಳು. ನಿಮ್ಮಂಥ ಮನಸ್ಸಿನ ದಾನಿಗಳ ಸಹಕಾರವೇ ನಮ್ಮ ಗ್ರಾಮದ ಈ ಗಣೇಶೋತ್ಸವವನ್ನು ವರ್ಷದಿಂದ ವರ್ಷಕ್ಕೆ ಇನ್ನಷ್ಟು ಅರ್ಥಪೂರ್ಣವಾಗಿ, ಅದ್ಧೂರಿಯಾಗಿ ಮುಂದುವರಿಸಲು ಬಲ ನೀಡುತ್ತದೆ. ನಿಮ್ಮ ದೇಣಿಗೆಯನ್ನು ಮೂರ್ತಿ ಪ್ರತಿಷ್ಠಾಪನೆ, ಅಲಂಕಾರ, ಅನ್ನಸಂತರ್ಪಣೆ ಮತ್ತು ಸಾಂಸ್ಕೃತಿಕ ಕಾರ್ಯಕ್ರಮಗಳಿಗಾಗಿ ಸದುಪಯೋಗಪಡಿಸಿಕೊಳ್ಳಲಾಗುವುದು.
 
 ದೇಣಿಗೆ ಮೊತ್ತ: ${a}
 ಹಬ್ಬ: ಗಣೇಶ ಚತುರ್ಥಿ 2026
-ಮಂಡಳ: ಶ್ರೀ ಸಿದ್ಧಿ ವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗ (TPT) Timmapur
+ಮಂಡಳ: ಶ್ರೀ ಸಿದ್ಧಿವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗ, ತಿಮ್ಮಾಪುರ
+
+ಗಣಪತಿ ಬಪ್ಪಾ ಎಲ್ಲರಿಗೂ ಸುಖ, ಶಾಂತಿ ಮತ್ತು ಸಮೃದ್ಧಿಯನ್ನು ಅನುಗ್ರಹಿಸಲಿ ಎಂದು ಪ್ರಾರ್ಥಿಸುತ್ತೇವೆ. ಹಬ್ಬದ ಕಾರ್ಯಕ್ರಮಗಳಲ್ಲಿ ನಿಮ್ಮ ಕುಟುಂಬದವರೊಂದಿಗೆ ಬಂದು ಭಾಗವಹಿಸಲು ಪ್ರೀತಿಯಿಂದ ಆಹ್ವಾನಿಸುತ್ತೇವೆ.
 
 ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ! 🙏
 
@@ -1850,16 +1971,16 @@ ${signOff}`;
 
 ನಮಸ್ಕಾರ ${n} ಅವರೆ,
 
-ತಿಮ್ಮಾಪುರದ ನಮ್ಮ ಗಣೇಶ ಚತುರ್ಥಿ 2026ರ ಹಬ್ಬದ ಕಾರ್ಯಕ್ರಮಗಳು ಹತ್ತಿರ ಬಂದಿವೆ. ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳ ವೇಳಾಪಟ್ಟಿಯನ್ನು ಒಮ್ಮೆ ನೋಡಿ, ನಿಮ್ಮ ಕುಟುಂಬದವರ ಜೊತೆಗೆ ಬಂದು ಹಬ್ಬದ ಸಂಭ್ರಮದಲ್ಲಿ ಭಾಗವಹಿಸಿ.
+ತಿಮ್ಮಾಪುರ ಗ್ರಾಮದ ಶ್ರೀ ಸಿದ್ಧಿವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗದ ವತಿಯಿಂದ ಆಚರಿಸಲಾಗುತ್ತಿರುವ ಗಣೇಶ ಚತುರ್ಥಿ 2026ರ ಹಬ್ಬದ ದಿನಗಳು ಹತ್ತಿರ ಬಂದಿವೆ. ಈ ವರ್ಷವೂ ಮೂರ್ತಿ ಪ್ರತಿಷ್ಠಾಪನೆಯಿಂದ ಹಿಡಿದು ಸಾಂಸ್ಕೃತಿಕ ಕಾರ್ಯಕ್ರಮಗಳು, ಸ್ಪರ್ಧೆಗಳು ಹಾಗೂ ಅನ್ನಸಂತರ್ಪಣೆಯವರೆಗೆ ಹಲವು ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ಆಯೋಜಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ನಮ್ಮ ಕಾರ್ಯಕ್ರಮ ವೇಳಾಪಟ್ಟಿಯನ್ನು ಒಮ್ಮೆ ಪರಿಶೀಲಿಸಿ.
 
-ನಿಮ್ಮ ಬರುವಿಕೆ ನಮಗೆ ತುಂಬಾ ಖುಷಿ ಕೊಡುತ್ತದೆ. ಎಲ್ಲರೂ ಸೇರಿ ಗಣಪತಿ ಹಬ್ಬವನ್ನು ಸಂಭ್ರಮದಿಂದ ಆಚರಿಸೋಣ. 🙏
+ನೀವು ನಿಮ್ಮ ಕುಟುಂಬ ಮತ್ತು ಸ್ನೇಹಿತರೊಂದಿಗೆ ಬಂದು ಈ ಒಗ್ಗಟ್ಟಿನ ಹಬ್ಬದ ಸಂಭ್ರಮದಲ್ಲಿ ಭಾಗವಹಿಸಬೇಕೆಂದು ಪ್ರೀತಿಯಿಂದ ಆಹ್ವಾನಿಸುತ್ತೇವೆ. ನಿಮ್ಮ ಉಪಸ್ಥಿತಿ ಮತ್ತು ಬೆಂಬಲ ನಮಗೆ ಅಮೂಲ್ಯವಾದುದು ಮತ್ತು ಹಬ್ಬಕ್ಕೆ ಇನ್ನಷ್ಟು ಕಳೆ ತರುತ್ತದೆ. ಎಲ್ಲರೂ ಸೇರಿ ಗಣಪತಿ ಹಬ್ಬವನ್ನು ಸಂಭ್ರಮದಿಂದ ಆಚರಿಸೋಣ. 🙏
 
 ${signOff}`;
       case 'prize': return `ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ 🙏
 
 ನಮಸ್ಕಾರ ${n} ಅವರೆ,
 
-ನಿಮಗೆ ಹೃತ್ಪೂರ್ವಕ ಅಭಿನಂದನೆಗಳು! 🎉 ನಮ್ಮ ಗಣೇಶ ಚತುರ್ಥಿ 2026ರ ಸ್ಪರ್ಧೆಯಲ್ಲಿ ನೀವು ಬಹುಮಾನ ಗೆದ್ದಿದ್ದೀರಿ.
+ನಿಮಗೆ ಹೃತ್ಪೂರ್ವಕ ಅಭಿನಂದನೆಗಳು! 🎉 ತಿಮ್ಮಾಪುರ ಗ್ರಾಮದ ಶ್ರೀ ಸಿದ್ಧಿವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗದ ವತಿಯಿಂದ ಆಯೋಜಿಸಲಾಗಿದ್ದ ಗಣೇಶ ಚತುರ್ಥಿ 2026ರ ಸ್ಪರ್ಧೆಯಲ್ಲಿ ನೀವು ಬಹುಮಾನ ಗೆದ್ದಿದ್ದೀರಿ. ನಿಮ್ಮ ಪ್ರತಿಭೆ ಮತ್ತು ಶ್ರಮ ನಿಜಕ್ಕೂ ಮೆಚ್ಚುವಂಥದ್ದು, ಇದನ್ನು ನಿಮ್ಮೊಂದಿಗೆ ಸಂಭ್ರಮಿಸಲು ನಮಗೆ ಬಹಳ ಸಂತೋಷವಾಗುತ್ತಿದೆ.
 
 ${latestPrize ? `ಸ್ಪರ್ಧೆ: ${latestPrize.category}
 🥇 ಮೊದಲ ಬಹುಮಾನ: ${latestPrize.firstWinner || '—'}${latestPrize.firstSponsor ? `
@@ -1867,7 +1988,7 @@ ${latestPrize ? `ಸ್ಪರ್ಧೆ: ${latestPrize.category}
 🥈 ಎರಡನೇ ಬಹುಮಾನ: ${latestPrize.secondWinner || '—'}${latestPrize.secondSponsor ? `
 ಎರಡನೇ ಬಹುಮಾನ ಪ್ರಾಯೋಜಕರು: ${latestPrize.secondSponsor}` : ''}
 
-` : ''}ನಿಮ್ಮ ಬಹುಮಾನವನ್ನು ಪಡೆಯಲು ಶ್ರೀ ಸಿದ್ಧಿ ವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗ (TPT) Timmapur ಸಮಿತಿಯವರನ್ನು ಸಂಪರ್ಕಿಸಿ. ನಿಮ್ಮ ಸಾಧನೆಗೆ Our Team ವತಿಯಿಂದ ತುಂಬು ಹಾರೈಕೆಗಳು. 🙏
+` : ''}ದಯವಿಟ್ಟು ಶ್ರೀ ಸಿದ್ಧಿವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗದ ಸಮಿತಿಯವರನ್ನು ಸಂಪರ್ಕಿಸಿ ನಿಮ್ಮ ಬಹುಮಾನವನ್ನು ಪಡೆದುಕೊಳ್ಳಿ. ಮುಂದಿನ ವರ್ಷಗಳ ಸ್ಪರ್ಧೆಗಳಲ್ಲಿಯೂ ಇದೇ ಉತ್ಸಾಹದಿಂದ ಭಾಗವಹಿಸಬೇಕೆಂದು ಆಶಿಸುತ್ತೇವೆ. ನಿಮ್ಮ ಸಾಧನೆಗೆ ಇಡೀ ತಂಡದ ವತಿಯಿಂದ ತುಂಬು ಹಾರೈಕೆಗಳು ಮತ್ತು ಗಣಪತಿ ಬಪ್ಪಾನ ಆಶೀರ್ವಾದ ಸದಾ ನಿಮ್ಮ ಮೇಲಿರಲಿ. 🙏
 
 ${signOff}`;
       case 'sponsor': {
@@ -1878,13 +1999,13 @@ ${signOff}`;
 
 ನಮಸ್ಕಾರ ${sponsor} ಅವರೆ,
 
-ನಮ್ಮ ತಿಮ್ಮಾಪುರದ ಗಣೇಶ ಚತುರ್ಥಿ 2026ರ ಸ್ಪರ್ಧೆಯ ಬಹುಮಾನವನ್ನು ಪ್ರಾಯೋಜಿಸುತ್ತಿರುವುದಕ್ಕೆ ತುಂಬಾ ಧನ್ಯವಾದಗಳು. 🙏
+ತಿಮ್ಮಾಪುರ ಗ್ರಾಮದ ಶ್ರೀ ಸಿದ್ಧಿವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗದ ಗಣೇಶ ಚತುರ್ಥಿ 2026ರ ಸ್ಪರ್ಧೆಯ ಬಹುಮಾನವನ್ನು ಪ್ರಾಯೋಜಿಸುವ ಮೂಲಕ ನೀವು ತೋರಿದ ಔದಾರ್ಯಕ್ಕೆ ನಮ್ಮ ಅಂತರಂಗದ ಧನ್ಯವಾದಗಳು. 🙏
 
 ${latestPrize ? `ಸ್ಪರ್ಧೆ: ${latestPrize.category}
 ${s1 ? `🥇 ಮೊದಲ ಬಹುಮಾನ — ಪ್ರಾಯೋಜಕರು: ${s1}
 ` : ''}${s2 ? `🥈 ಎರಡನೇ ಬಹುಮಾನ — ಪ್ರಾಯೋಜಕರು: ${s2}
 ` : ''}` : ''}
-ನಿಮ್ಮ ಸಹಕಾರದಿಂದ ನಮ್ಮ ಮಕ್ಕಳ ಮತ್ತು ಯುವಕರಿಗೆ ಇನ್ನಷ್ಟು ಉತ್ಸಾಹ ಸಿಗುತ್ತದೆ. ನಿಮ್ಮ ಬೆಂಬಲಕ್ಕೆ Our Team ವತಿಯಿಂದ ಹೃತ್ಪೂರ್ವಕ ಧನ್ಯವಾದಗಳು.
+ನಿಮ್ಮಂಥ ದಾನಿಗಳ ಸಹಕಾರದಿಂದ ನಮ್ಮ ಗ್ರಾಮದ ಮಕ್ಕಳು ಮತ್ತು ಯುವಕರಿಗೆ ತಮ್ಮ ಪ್ರತಿಭೆಯನ್ನು ಪ್ರದರ್ಶಿಸಲು ಇನ್ನಷ್ಟು ಪ್ರೋತ್ಸಾಹ ಮತ್ತು ಅವಕಾಶ ಸಿಗುತ್ತದೆ. ನಿಮ್ಮ ಈ ಸಹಾಯ ನಮ್ಮ ಸಂಘಟನೆಗೆ ಮತ್ತು ಇಡೀ ಗ್ರಾಮಕ್ಕೆ ಅಮೂಲ್ಯವಾದುದು ಹಾಗೂ ಈ ಪರಂಪರೆಯನ್ನು ಮುಂದಿನ ಪೀಳಿಗೆಗೂ ಉಳಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. ನಿಮ್ಮ ಬೆಂಬಲಕ್ಕೆ ಇಡೀ ತಂಡದ ವತಿಯಿಂದ ಹೃತ್ಪೂರ್ವಕ ಧನ್ಯವಾದಗಳು ಮತ್ತು ಗಣಪತಿ ಬಪ್ಪಾನ ಆಶೀರ್ವಾದ ನಿಮಗೆ ಸದಾ ಇರಲಿ.
 
 ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ! 🙏
 
@@ -1894,9 +2015,9 @@ ${signOff}`;
 
 ನಮಸ್ಕಾರ ${n} ಅವರೆ,
 
-ತಿಮ್ಮಾಪುರದ ನಮ್ಮ ಗಣೇಶ ಚತುರ್ಥಿ 2026ರ ಹಬ್ಬದ ಕಾರ್ಯಕ್ರಮದ ಕುರಿತು ಈ ಮಾಹಿತಿ ನಿಮಗಾಗಿ. ನಮ್ಮ ಹಬ್ಬದ ಕಾರ್ಯಕ್ರಮಗಳಿಗೆ ನಿಮ್ಮ ಬೆಂಬಲ ಮತ್ತು ಭಾಗವಹಿಸುವಿಕೆ ಯಾವಾಗಲೂ ಇರಲಿ.
+ತಿಮ್ಮಾಪುರ ಗ್ರಾಮದ ಶ್ರೀ ಸಿದ್ಧಿವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗದ ವತಿಯಿಂದ ಆಚರಿಸಲಾಗುತ್ತಿರುವ ಗಣೇಶ ಚತುರ್ಥಿ 2026ರ ಹಬ್ಬದ ಕುರಿತ ಈ ಮಾಹಿತಿಯನ್ನು ನಿಮ್ಮೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳುತ್ತಿದ್ದೇವೆ. ಪ್ರತಿ ವರ್ಷದಂತೆ ಈ ಬಾರಿಯೂ ಭಕ್ತಿ, ಒಗ್ಗಟ್ಟು ಮತ್ತು ಸಂಭ್ರಮದಿಂದ ಹಬ್ಬವನ್ನು ಆಚರಿಸಲು ನಾವು ಸಿದ್ಧತೆ ನಡೆಸುತ್ತಿದ್ದೇವೆ. ನಮ್ಮ ಈ ಪ್ರಯತ್ನಕ್ಕೆ ನಿಮ್ಮ ಬೆಂಬಲ ಮತ್ತು ಭಾಗವಹಿಸುವಿಕೆ ಯಾವಾಗಲೂ ಅಮೂಲ್ಯವಾಗಿದೆ.
 
-ಕುಟುಂಬದವರ ಜೊತೆ ಬಂದು ಗಣಪತಿ ಹಬ್ಬದ ಸಂಭ್ರಮವನ್ನು ನಮ್ಮೆಲ್ಲರ ಜೊತೆ ಹಂಚಿಕೊಳ್ಳಿ.
+ದಯವಿಟ್ಟು ನಿಮ್ಮ ಕುಟುಂಬದವರೊಂದಿಗೆ ಬಂದು ಗಣಪತಿ ಹಬ್ಬದ ಸಂಭ್ರಮವನ್ನು ನಮ್ಮೆಲ್ಲರ ಜೊತೆ ಹಂಚಿಕೊಳ್ಳಿ.
 
 ಧನ್ಯವಾದಗಳು ಮತ್ತು ಗಣಪತಿ ಬಪ್ಪಾ ಮೋರಯಾ! 🙏
 
@@ -1904,29 +2025,38 @@ ${signOff}`;
     }
   }
   const signOff = `Regards,
-ಶ್ರೀ ಸಿದ್ಧಿ ವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗ (TPT) Timmapur`;
+Shree siddi vinayaka geleyara balaga(TPT boys)
+Timmapur`;
   switch(type){
     case 'thanks': return `Ganpati Bappa Morya 🙏
 
-Dear ${n}, thank you for your generous donation of ${a} to our Ganesh Chaturthi celebrations. Your support helps us conduct the celebrations successfully.
+Dear ${n},
+
+On behalf of Shree Siddi Vinayaka Geleyara Balaga, Timmapur, we would like to express our heartfelt gratitude for your generous donation of ${a} towards our Ganesh Chaturthi 2026 celebrations. Contributions like yours make it possible for us to organise the idol installation, decorations, Anna Santarpane (community feast), and cultural programs every year with the same devotion and enthusiasm as always.
 
 Donation details: ${a}
 Event: Ganesh Chaturthi 2026
-Our Team: ಶ್ರೀ ಸಿದ್ಧಿ ವಿನಾಯಕ ಗೆಳೆಯರ ಬಳಗ (TPT) Timmapur
+Organised by: Shree siddi vinayaka geleyara balaga (TPT boys), Timmapur
 
-Thank you for being part of our celebration. We are grateful for your support! 🙏
+May Lord Ganesha bless you and your family with health, happiness, and prosperity. We warmly invite you and your loved ones to join us during the festivities.
+
+Thank you once again for being an important part of our celebration! 🙏
 
 ${signOff}`;
     case 'reminder': return `Ganpati Bappa Morya 🙏
 
-Dear ${n}, this is a reminder about our Ganesh Chaturthi 2026 celebrations. Please check the event schedule and join us with your family and friends.
+Dear ${n},
 
-Your presence and support mean a lot to Our Team.
+The Ganesh Chaturthi 2026 celebrations organised by Shree Siddi Vinayaka Geleyara Balaga, Timmapur, are just around the corner! This year we have planned the idol installation, cultural programs, competitions, and Anna Santarpane (community feast) for everyone to enjoy together. Please take a moment to check the event schedule so you don't miss anything.
+
+We would love for you to join us with your family and friends and be a part of this beautiful celebration of devotion and unity. Your presence and support mean a great deal to all of us. 🙏
 
 ${signOff}`;
     case 'prize': return `Ganpati Bappa Morya 🙏
 
-Dear ${n}, congratulations! 🎉 You've won a prize in our Ganesh Chaturthi 2026 competition.
+Dear ${n},
+
+Congratulations! 🎉 You've won a prize in the Ganesh Chaturthi 2026 competition organised by Shree Siddi Vinayaka Geleyara Balaga, Timmapur. Your talent and effort truly made an impression, and we're delighted to celebrate this achievement with you.
 
 ${latestPrize ? `Competition: ${latestPrize.category}
 🥇 1st Prize Winner: ${latestPrize.firstWinner || '—'}${latestPrize.firstSponsor ? `
@@ -1934,7 +2064,7 @@ ${latestPrize ? `Competition: ${latestPrize.category}
 🥈 2nd Prize Winner: ${latestPrize.secondWinner || '—'}${latestPrize.secondSponsor ? `
 2nd Prize Sponsored by: ${latestPrize.secondSponsor}` : ''}
 
-` : ''}Please contact the mandal committee to collect your prize. Congratulations once again!
+` : ''}Please get in touch with the mandal committee at your convenience to collect your prize. We hope to see you participate with the same spirit in the years to come. Congratulations once again, and may Ganpati Bappa's blessings always be with you! 🙏
 
 ${signOff}`;
     case 'sponsor': {
@@ -1945,13 +2075,15 @@ ${signOff}`;
 
 Dear ${sponsor},
 
-Thank you for sponsoring a prize for our Ganesh Chaturthi 2026 competition. Your support encourages our children and youth to participate and makes the celebration more special. 🙏
+On behalf of Shree Siddi Vinayaka Geleyara Balaga, Timmapur, thank you from the bottom of our hearts for generously sponsoring a prize for our Ganesh Chaturthi 2026 competition. 🙏
 
 ${latestPrize ? `Competition: ${latestPrize.category}
 ${s1 ? `🥇 1st Prize Sponsor: ${s1}
 ` : ''}${s2 ? `🥈 2nd Prize Sponsor: ${s2}
 ` : ''}` : ''}
-We sincerely appreciate your generous support.
+Your generosity encourages our village's children and youth to showcase their talents with confidence and makes our celebration truly special. Support like yours strengthens our community and helps keep these traditions alive for generations to come.
+
+We sincerely appreciate your kindness and support. May Lord Ganesha bless you with happiness and prosperity.
 
 ${signOff}`;
     }
@@ -1959,7 +2091,11 @@ ${signOff}`;
 
 Dear ${n},
 
-We are happy to share this update regarding our Ganesh Chaturthi 2026 celebrations. Thank you for your continued support and participation.
+We are happy to share this update regarding the Ganesh Chaturthi 2026 celebrations organised by Shree Siddi Vinayaka Geleyara Balaga, Timmapur. As always, we are preparing to celebrate this festival with devotion, unity, and joy, and your continued support and participation mean a great deal to us.
+
+We warmly invite you and your family to be part of the festivities this year.
+
+Thank you, and Ganpati Bappa Morya! 🙏
 
 ${signOff}`;
   }
