@@ -108,6 +108,14 @@
   button.primary:hover{background:var(--sindoor-deep);}
   button.ghost{background:transparent;border:1.5px solid var(--banyan);color:var(--banyan);padding:10px 14px;border-radius:8px;font-weight:600;font-size:0.82rem;cursor:pointer;flex:1;min-width:150px;}
   button.ghost:hover{background:var(--banyan);color:#fff;}
+  .chip-group{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+  .chip-btn{
+    background:#fff;border:1.5px solid var(--paper-line);color:var(--ink);
+    padding:9px 14px;border-radius:20px;font-size:0.85rem;font-weight:600;cursor:pointer;
+    font-family:'Inter',sans-serif;transition:background .15s ease,border-color .15s ease,color .15s ease;
+  }
+  .chip-btn:hover{border-color:var(--sindoor);}
+  .chip-btn.selected{background:var(--sindoor);border-color:var(--sindoor);color:#fff;}
   .toolbar-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
   button.toolbar-btn{
     background:transparent;border:1.5px solid var(--paper-line);color:var(--ink-soft);
@@ -619,8 +627,9 @@ button:disabled,input:disabled,select:disabled,textarea:disabled{
         <div><label data-i18n="lbl_register_name">Your Name</label><input id="reg-name" data-i18n-ph="ph_register_name"></div>
         <div><label data-i18n="lbl_register_phone">Phone Number</label><input id="reg-phone" inputmode="tel" data-i18n-ph="ph_register_phone"></div>
       </div>
-      <label data-i18n="lbl_register_event">Event</label>
-      <select id="reg-event"><option value="" data-i18n="opt_select_event">Select an event</option></select>
+      <label data-i18n="lbl_register_event">Events</label>
+      <p class="hint" style="margin-top:-8px;" data-i18n="register_event_hint">Tap all the events you'd like to join — you can pick more than one.</p>
+      <div id="reg-event-group" class="chip-group" role="group" aria-label="Events"></div>
       <div class="row">
         <div><label data-i18n="lbl_register_count">Number attending</label><input id="reg-count" type="number" min="1" step="1" value="1"></div>
         <div><label data-i18n="lbl_register_note">Note (optional)</label><input id="reg-note" data-i18n-ph="ph_register_note"></div>
@@ -941,8 +950,9 @@ const translations = {
     nav_history:"Ganesh History",
     nav_donations:"🔒 Donations", nav_expenses:"🔒 Expenses", nav_prizes:"Prizes", nav_photos:"Photos",
     nav_registrations:"🔒 Registrations", nav_contact:"Contact", nav_message:"🔒 Send Message",
-    register_title:"Register for an Event", register_hint:"Pick an event and leave your details — we'll be in touch if anything changes.",
-    lbl_register_name:"Your Name", lbl_register_phone:"Phone Number", lbl_register_event:"Event", lbl_register_count:"Number attending", lbl_register_note:"Note (optional)",
+    register_title:"Register for an Event", register_hint:"Pick one or more events and leave your details — we'll be in touch if anything changes.",
+    register_event_hint:"Tap all the events you'd like to join — you can pick more than one.",
+    lbl_register_name:"Your Name", lbl_register_phone:"Phone Number", lbl_register_event:"Events", lbl_register_count:"Number attending", lbl_register_note:"Note (optional)",
     ph_register_name:"e.g. Sneha Joshi", ph_register_phone:"e.g. 9876543210", ph_register_note:"e.g. Bringing family of 4",
     opt_select_event:"Select an event", btn_register:"Register", toast_registered:"You're registered! See you there.",
     reg_success_title:"Registration complete!", reg_success_msg:"Thank you — we've saved your entry. See you at the event!", btn_close:"Close",
@@ -1033,8 +1043,9 @@ const translations = {
     nav_history:"ಗಣೇಶ ಇತಿಹಾಸ",
     nav_donations:"🔒 ದೇಣಿಗೆಗಳು", nav_expenses:"🔒 ಖರ್ಚುಗಳು", nav_prizes:"ಬಹುಮಾನಗಳು", nav_photos:"ಫೋಟೋಗಳು",
     nav_registrations:"🔒 ನೋಂದಣಿಗಳು", nav_contact:"ಸಂಪರ್ಕಿಸಿ", nav_message:"🔒 ಸಂದೇಶ ಕಳುಹಿಸಿ",
-    register_title:"ಕಾರ್ಯಕ್ರಮಕ್ಕೆ ನೋಂದಾಯಿಸಿ", register_hint:"ಒಂದು ಕಾರ್ಯಕ್ರಮವನ್ನು ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು ನಿಮ್ಮ ವಿವರಗಳನ್ನು ನೀಡಿ — ಏನಾದರೂ ಬದಲಾವಣೆಯಾದರೆ ನಾವು ತಿಳಿಸುತ್ತೇವೆ.",
-    lbl_register_name:"ನಿಮ್ಮ ಹೆಸರು", lbl_register_phone:"ಫೋನ್ ಸಂಖ್ಯೆ", lbl_register_event:"ಕಾರ್ಯಕ್ರಮ", lbl_register_count:"ಭಾಗವಹಿಸುವವರ ಸಂಖ್ಯೆ", lbl_register_note:"ಟಿಪ್ಪಣಿ (ಐಚ್ಛಿಕ)",
+    register_title:"ಕಾರ್ಯಕ್ರಮಕ್ಕೆ ನೋಂದಾಯಿಸಿ", register_hint:"ಒಂದು ಅಥವಾ ಹೆಚ್ಚು ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು ನಿಮ್ಮ ವಿವರಗಳನ್ನು ನೀಡಿ — ಏನಾದರೂ ಬದಲಾವಣೆಯಾದರೆ ನಾವು ತಿಳಿಸುತ್ತೇವೆ.",
+    register_event_hint:"ನೀವು ಭಾಗವಹಿಸಲು ಬಯಸುವ ಎಲ್ಲಾ ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ — ಒಂದಕ್ಕಿಂತ ಹೆಚ್ಚು ಆಯ್ಕೆ ಮಾಡಬಹುದು.",
+    lbl_register_name:"ನಿಮ್ಮ ಹೆಸರು", lbl_register_phone:"ಫೋನ್ ಸಂಖ್ಯೆ", lbl_register_event:"ಕಾರ್ಯಕ್ರಮಗಳು", lbl_register_count:"ಭಾಗವಹಿಸುವವರ ಸಂಖ್ಯೆ", lbl_register_note:"ಟಿಪ್ಪಣಿ (ಐಚ್ಛಿಕ)",
     ph_register_name:"ಉದಾ: ಸ್ನೇಹಾ ಜೋಶಿ", ph_register_phone:"ಉದಾ: 9876543210", ph_register_note:"ಉದಾ: 4 ಜನ ಕುಟುಂಬದೊಂದಿಗೆ ಬರುತ್ತೇನೆ",
     opt_select_event:"ಕಾರ್ಯಕ್ರಮ ಆಯ್ಕೆಮಾಡಿ", btn_register:"ನೋಂದಾಯಿಸಿ", toast_registered:"ನೀವು ನೋಂದಾಯಿಸಲ್ಪಟ್ಟಿದ್ದೀರಿ! ಅಲ್ಲಿ ಭೇಟಿಯಾಗೋಣ.",
     reg_success_title:"ನೋಂದಣಿ ಪೂರ್ಣಗೊಂಡಿದೆ!", reg_success_msg:"ಧನ್ಯವಾದಗಳು — ನಿಮ್ಮ ನೋಂದಣಿ ಉಳಿಸಲಾಗಿದೆ. ಕಾರ್ಯಕ್ರಮದಲ್ಲಿ ಭೇಟಿಯಾಗೋಣ!", btn_close:"ಮುಚ್ಚಿ",
@@ -1316,6 +1327,8 @@ document.querySelectorAll('.drawer-item').forEach(btn=>{ if(ADMIN_TABS.has(btn.d
 // ============ APP STATE ============
 const appState = { schedule: [], donations: [], expenses: [], prizes: [], committee: [], photos: [], contact: {}, registrations: [], enquiries: [] };
 let storageMode = 'memory';
+// Events currently ticked on the public registration form (visitors can pick more than one).
+let selectedRegEvents = new Set();
 
 const defaultSchedule = [
   {day:'Day 1 — Sthapana', time:'7:00 AM', name:'Ganesh Murti Sthapana & Pran Pratishtha', terms:''},
@@ -1601,19 +1614,49 @@ function populateEventDropdowns(){
       names.map(n=>`<option value="${n.replace(/"/g,'&quot;')}">${n}</option>`).join('');
     if(names.includes(current)) sel.value = current;
   };
-  fillSelect('reg-event', 'opt_select_event');
   fillSelect('ph-event-name', 'opt_select_event');
+  renderRegEventChips(names);
+}
+
+// Draws the tappable event chips on the registration form and keeps
+// previously-selected events checked across re-renders (e.g. after the
+// admin edits the schedule while someone has the form open).
+function renderRegEventChips(names){
+  const wrap = $('reg-event-group');
+  if(!wrap) return;
+  selectedRegEvents = new Set([...selectedRegEvents].filter(n=>names.includes(n)));
+  wrap.innerHTML = names.map(n=>{
+    const esc = n.replace(/"/g,'&quot;');
+    const isSel = selectedRegEvents.has(n);
+    return `<button type="button" class="chip-btn${isSel?' selected':''}" data-event="${esc}">${n}</button>`;
+  }).join('');
+  wrap.querySelectorAll('.chip-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> toggleRegEvent(btn.dataset.event));
+  });
+}
+function toggleRegEvent(name){
+  if(selectedRegEvents.has(name)) selectedRegEvents.delete(name);
+  else selectedRegEvents.add(name);
+  renderRegEventChips(getEventOptionNames());
 }
 
 async function addRegistration(){
   const name = $('reg-name').value.trim();
   const phone = $('reg-phone').value.trim();
-  const event = $('reg-event').value;
+  const events = [...selectedRegEvents];
   const count = $('reg-count').value || '1';
   const note = $('reg-note').value.trim();
-  if(!name || !phone || !event){ toast('toast_fill_required'); return; }
-  appState.registrations.push({name, phone, event, count:Number(count)||1, note, ts:new Date().toISOString()});
-  $('reg-name').value=''; $('reg-phone').value=''; $('reg-event').value=''; $('reg-count').value='1'; $('reg-note').value='';
+  if(!name || !phone || events.length===0){ toast('toast_fill_required'); return; }
+  // One registration record per chosen event (same person/details, same
+  // timestamp) — this keeps the existing per-event grouping, counts and
+  // CSV export working without any changes.
+  const ts = new Date().toISOString();
+  events.forEach(event=>{
+    appState.registrations.push({name, phone, event, count:Number(count)||1, note, ts});
+  });
+  $('reg-name').value=''; $('reg-phone').value=''; $('reg-count').value='1'; $('reg-note').value='';
+  selectedRegEvents = new Set();
+  renderRegEventChips(getEventOptionNames());
   await persistKey('registrations', appState.registrations);
   renderRegistrations();
   $('reg-success-modal').classList.add('open');
